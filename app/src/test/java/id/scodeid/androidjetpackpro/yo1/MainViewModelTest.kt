@@ -1,4 +1,4 @@
-package id.scodeid.androidjetpackpro.yo1unittesting
+package id.scodeid.androidjetpackpro.yo1
 
 //import org.junit.Assert.assertEquals
 import id.scodeid.androidjetpackpro.exercise.yo1unittesting.CuboidModel

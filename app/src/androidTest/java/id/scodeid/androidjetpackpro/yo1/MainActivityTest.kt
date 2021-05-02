@@ -1,4 +1,4 @@
-package id.scodeid.androidjetpackpro.yo1unittesting
+package id.scodeid.androidjetpackpro.yo1
 
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
