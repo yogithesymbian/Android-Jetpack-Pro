@@ -1,8 +1,8 @@
-package id.scodeid.androidjetpackpro
+package id.scodeid.androidjetpackpro.yo1unittesting
 
 //import org.junit.Assert.assertEquals
-import id.scodeid.androidjetpackpro.exercise.yo1UnitTesting.CuboidModel
-import id.scodeid.androidjetpackpro.exercise.yo1UnitTesting.MainViewModel
+import id.scodeid.androidjetpackpro.exercise.yo1unittesting.CuboidModel
+import id.scodeid.androidjetpackpro.exercise.yo1unittesting.MainViewModel
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -22,7 +22,7 @@ class MainViewModelTest {
     private val dummySurfaceArea = 396.0
 
     @Before
-    fun before(){
+    fun before() {
         cuboidModel = mock(CuboidModel::class.java)
         mainViewModel = MainViewModel(cuboidModel)
     }
@@ -36,7 +36,7 @@ class MainViewModelTest {
     }
 
     fun testGetCircumference() {
-        cuboidModel= CuboidModel()
+        cuboidModel = CuboidModel()
         mainViewModel = MainViewModel(cuboidModel)
         mainViewModel.save(dummyWidth, dummyLength, dummyHeight)
         val volume = mainViewModel.getCircumference()
@@ -44,7 +44,7 @@ class MainViewModelTest {
     }
 
     fun testGetSurfaceArea() {
-        cuboidModel= CuboidModel()
+        cuboidModel = CuboidModel()
         mainViewModel = MainViewModel(cuboidModel)
         mainViewModel.save(dummyWidth, dummyLength, dummyHeight)
         val volume = mainViewModel.getSurfaceArea()
@@ -52,7 +52,7 @@ class MainViewModelTest {
     }
 
     @Test
-    fun testMockVolume(){
+    fun testMockVolume() {
         `when`(mainViewModel.getVolume()).thenReturn(dummyVolume)
         val volume = mainViewModel.getVolume()
         verify(cuboidModel).getVolume()

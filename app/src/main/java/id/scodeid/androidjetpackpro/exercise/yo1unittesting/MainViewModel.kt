@@ -1,4 +1,4 @@
-package id.scodeid.androidjetpackpro.exercise.yo1UnitTesting
+package id.scodeid.androidjetpackpro.exercise.yo1unittesting
 
 class MainViewModel(private val cuboidModel: CuboidModel) {
 

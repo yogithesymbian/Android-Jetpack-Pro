@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import id.scodeid.androidjetpackpro.databinding.ActivityMainBinding
-import id.scodeid.androidjetpackpro.exercise.yo1UnitTesting.MainMockitoActivity
+import id.scodeid.androidjetpackpro.exercise.yo1unittesting.MainMockitoActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 

@@ -1,4 +1,4 @@
-package id.scodeid.androidjetpackpro.exercise.yo1UnitTesting
+package id.scodeid.androidjetpackpro.exercise.yo1unittesting
 
 class CuboidModel {
     private var width = 0.0

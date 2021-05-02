@@ -1,4 +1,4 @@
-package id.scodeid.androidjetpackpro.exercise.yo1UnitTesting
+package id.scodeid.androidjetpackpro.exercise.yo1unittesting
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -27,6 +27,7 @@ class MainMockitoActivity : AppCompatActivity(), View.OnClickListener {
 
 
     }
+
     override fun onClick(v: View) {
         val length = activityMainMockitoBinding.edtLength.text.toString().trim()
         val width = activityMainMockitoBinding.edtWidth.text.toString().trim()
@@ -66,12 +67,14 @@ class MainMockitoActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
+
     private fun visible() {
         activityMainMockitoBinding.btnCalculateVolume.visibility = View.VISIBLE
         activityMainMockitoBinding.btnCalculateCircumference.visibility = View.VISIBLE
         activityMainMockitoBinding.btnCalculateSurfaceArea.visibility = View.VISIBLE
         activityMainMockitoBinding.btnSave.visibility = View.GONE
     }
+
     private fun gone() {
         activityMainMockitoBinding.btnCalculateVolume.visibility = View.GONE
         activityMainMockitoBinding.btnCalculateCircumference.visibility = View.GONE

@@ -1,4 +1,4 @@
-package id.scodeid.androidjetpackpro
+package id.scodeid.androidjetpackpro.yo1unittesting
 
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
@@ -6,6 +6,8 @@ import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import id.scodeid.androidjetpackpro.MainActivity
+import id.scodeid.androidjetpackpro.R
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -23,7 +25,7 @@ class MainActivityTest {
     private val fieldEmpty = "Field ini tidak boleh kosong"
 
     @Before
-    fun setup(){
+    fun setup() {
         ActivityScenario.launch(MainActivity::class.java)
         onView(withId(R.id.btn_unit_testing_mockito)).perform(click())
     }
@@ -55,6 +57,7 @@ class MainActivityTest {
         onView(withId(R.id.tv_result)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_result)).check(matches(withText(dummySurfaceArea)))
     }
+
     @Test
     fun assertGetVolume() {
         onView(withId(R.id.edt_length)).perform(typeText(dummyLength), closeSoftKeyboard())
@@ -67,6 +70,7 @@ class MainActivityTest {
         onView(withId(R.id.tv_result)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_result)).check(matches(withText(dummyVolume)))
     }
+
     //Pengecekan untuk empty input
     @Test
     fun assertEmptyInput() {

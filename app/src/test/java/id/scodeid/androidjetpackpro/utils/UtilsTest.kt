@@ -15,7 +15,7 @@ class UtilsTest : TestCase() {
 
         try {
             date = dateFormat.parse("02/28/2021")
-        } catch (e: ParseException){
+        } catch (e: ParseException) {
             e.printStackTrace()
         }
 
