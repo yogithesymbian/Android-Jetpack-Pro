@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.View
 import id.scodeid.androidjetpackpro.databinding.ActivityMainBinding
 import id.scodeid.androidjetpackpro.exercise.yo1unittesting.MainMockitoActivity
+import id.scodeid.androidjetpackpro.exercise.yo2viewmodel.MainViewModelActivity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.home.HomeActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -18,6 +20,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(activityMainBinding.root)
 
         activityMainBinding.btnUnitTestingMockito.setOnClickListener(this)
+        activityMainBinding.btnInstrumentTest.setOnClickListener {
+            startActivity(Intent(this, MainViewModelActivity::class.java))
+        }
+        activityMainBinding.btnProject.setOnClickListener{
+            startActivity(Intent(this, HomeActivity::class.java))
+        }
     }
 
     override fun onClick(v: View) {

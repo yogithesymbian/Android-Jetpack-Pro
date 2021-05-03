@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="id.scodeid.androidjetpackpro">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AndroidJetpackPro">
-        <activity android:name=".exercise.yo2viewmodel.MainViewModelActivity"></activity>
+        android:theme="@style/Theme.AndroidJetpackPro"
+        android:fullBackupContent="@xml/backup_descriptor"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name="id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.detail.DetailCourseActivity"
+            android:label="@string/title_activity_detail_course"
+            android:parentActivityName="id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.home.HomeActivity"
+            android:theme="@style/Theme.AndroidJetpackPro.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.home.HomeActivity" />
+        </activity>
+        <activity android:name="id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.reader.CourseReaderActivity" />
+        <activity android:name="id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.home.HomeActivity" />
+        <activity android:name=".exercise.yo2viewmodel.MainViewModelActivity" />
         <activity android:name=".exercise.yo1unittesting.MainMockitoActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
