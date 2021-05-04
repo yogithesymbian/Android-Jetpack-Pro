@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ShareCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.scodeid.androidjetpackpro.R
 import id.scodeid.androidjetpackpro.databinding.FragmentBookmarkBinding
@@ -28,7 +29,10 @@ private lateinit var fragmentBookmarkBinding: FragmentBookmarkBinding
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null){
-            val courses = DataDummy.generateDummyCourses()
+            // load data
+            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[BookmarkViewModel::class.java]
+            val courses = viewModel.getBookmarks()
+
             val adapter = BookmarkAdapter(this)
             adapter.setCourses(courses)
 

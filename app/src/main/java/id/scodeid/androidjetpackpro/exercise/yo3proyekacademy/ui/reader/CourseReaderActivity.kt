@@ -2,6 +2,7 @@ package id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.reader
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import id.scodeid.androidjetpackpro.R
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.reader.content.ModuleListFragment
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.reader.list.ModuleContentFragment
@@ -15,10 +16,13 @@ class CourseReaderActivity : AppCompatActivity(), CourseReaderCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_course_reader)
 
+        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[CourseReaderViewModel::class.java]
+
         val bundle = intent.extras
         if (bundle != null) {
             val courseId = bundle.getString(EXTRA_COURSE_ID)
             if (courseId != null) {
+                viewModel.setSelectedCourse(courseId)
                 populateFragment()
             }
         }
@@ -28,7 +32,7 @@ class CourseReaderActivity : AppCompatActivity(), CourseReaderCallback {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         var fragment = supportFragmentManager.findFragmentByTag(ModuleListFragment.TAG)
 
-        if (fragment == null){
+        if (fragment == null) {
             fragment = ModuleListFragment.newInstance()
             fragmentTransaction.add(R.id.frame_container, fragment, ModuleListFragment.TAG)
             fragmentTransaction.addToBackStack(null)

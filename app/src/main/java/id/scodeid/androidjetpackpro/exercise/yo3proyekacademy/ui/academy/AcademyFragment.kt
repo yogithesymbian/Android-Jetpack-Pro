@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.scodeid.androidjetpackpro.R
 import id.scodeid.androidjetpackpro.databinding.FragmentAcademyBinding
@@ -13,6 +14,7 @@ import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.DataDummy
 
 class AcademyFragment : Fragment() {
 
+    // init for binding
     private lateinit var fragmentAcademyBinding: FragmentAcademyBinding
 
     override fun onCreateView(
@@ -25,11 +27,18 @@ class AcademyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (activity != null) {
-            val course = DataDummy.generateDummyCourses()
-            val academyAdapter = AcademyAdapter()
-            academyAdapter.setCourses(course)
 
+        if (activity != null) {
+
+            // load data
+            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[AcademyViewModel::class.java]
+            val courses = viewModel.getCourse()
+
+            // adapter set
+            val academyAdapter = AcademyAdapter()
+            academyAdapter.setCourses(courses)
+
+            // recyclerView
             with(fragmentAcademyBinding.rvAcademy) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
