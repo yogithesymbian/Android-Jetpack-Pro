@@ -9,7 +9,9 @@ import id.scodeid.androidjetpackpro.R
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.academy.AcademyFragment
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.bookmark.BookmarkFragment
 
-class SectionsPagerAdapter(private val context: Context, fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class SectionsPagerAdapter(
+        private val context: Context, fragmentManager: FragmentManager) :
+        FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     companion object {
         @StringRes
@@ -18,7 +20,7 @@ class SectionsPagerAdapter(private val context: Context, fragmentManager: Fragme
 
     override fun getCount(): Int = 2
 
-    override fun getPageTitle(position: Int): CharSequence? = context.resources.getString(TAB_TITLES[position])
+    override fun getPageTitle(position: Int): CharSequence = context.resources.getString(TAB_TITLES[position])
 
     override fun getItem(position: Int): Fragment =
             when (position) {
