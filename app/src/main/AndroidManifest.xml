@@ -12,21 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidJetpackPro"
         android:fullBackupContent="@xml/backup_descriptor"
-        tools:ignore="GoogleAppIndexingWarning">
+        android:allowBackup="false"
+        >
         <activity
-            android:name="id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.detail.DetailCourseActivity"
+            android:name="id.scodeid.androidjetpackpro.ui.detail.DetailCourseActivity"
             android:label="@string/title_activity_detail_course"
-            android:parentActivityName="id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.home.HomeActivity"
+            android:parentActivityName="id.scodeid.androidjetpackpro.ui.home.HomeActivity"
             android:theme="@style/Theme.AndroidJetpackPro.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.home.HomeActivity" />
+                android:value="id.scodeid.androidjetpackpro.ui.home.HomeActivity" />
         </activity>
-        <activity android:name="id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.reader.CourseReaderActivity" />
-        <activity android:name="id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.home.HomeActivity" />
-        <activity android:name=".exercise.yo2viewmodel.MainViewModelActivity" />
-        <activity android:name=".exercise.yo1unittesting.MainMockitoActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="id.scodeid.androidjetpackpro.ui.reader.CourseReaderActivity" />
+        <activity android:name="id.scodeid.androidjetpackpro.ui.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
