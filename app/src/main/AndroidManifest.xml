@@ -1,36 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="id.scodeid.androidjetpackpro">
+    package="id.scodeid.yorebahanmovie">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:allowBackup="false"
+        android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AndroidJetpackPro"
-        android:fullBackupContent="@xml/backup_descriptor"
-        android:allowBackup="false"
-        >
+        android:theme="@style/Theme.AndroidJetpackPro">
+        <activity android:name=".ui.home.tvshow.detail.DetailTvShowActivity"></activity>
         <activity
-            android:name="id.scodeid.androidjetpackpro.ui.detail.DetailCourseActivity"
-            android:label="@string/title_activity_detail_course"
-            android:parentActivityName="id.scodeid.androidjetpackpro.ui.home.HomeActivity"
-            android:theme="@style/Theme.AndroidJetpackPro.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="id.scodeid.androidjetpackpro.ui.home.HomeActivity" />
-        </activity>
-        <activity android:name="id.scodeid.androidjetpackpro.ui.reader.CourseReaderActivity" />
-        <activity android:name="id.scodeid.androidjetpackpro.ui.home.HomeActivity">
+            android:name=".ui.home.MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.AndroidJetpackPro.NoActionBar" />
+        <activity android:name=".ui.splashscreen.MainSplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.home.movie.detail.DetailMovieActivity"
+            android:label="@string/title_activity_detail_course"
+            android:parentActivityName=".ui.home.HomeActivity"
+            android:theme="@style/Theme.AndroidJetpackPro.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="id.scodeid.yorebahanmovie.ui.home.HomeActivity" />
+        </activity>
+        <activity android:name=".ui.reader.CourseReaderActivity" />
+        <activity android:name=".ui.home.HomeActivity" />
     </application>
 
 </manifest>

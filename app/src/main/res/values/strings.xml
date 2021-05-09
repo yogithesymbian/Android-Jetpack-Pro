@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android Jetpack Pro</string>
+    <string name="app_name">YoRebahan Movie</string>
     <string name="title_activity_detail_course">Detail Course</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -18,8 +18,8 @@
     <string name="example">Example</string>
     <string name="start_learn">Mulai Belajar</string>
     <string name="list_module">Daftar Modul</string>
-    <string name="home">Home</string>
-    <string name="bookmark">Bookmark</string>
+    <string name="home_tv">TV SHOWS</string>
+    <string name="home_movie">MOVIES</string>
     <string name="menu_bookmark">bookmark</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
@@ -28,4 +28,12 @@
     <string name="message_ok">OK</string>
     <string name="deadline_date">Deadline %s</string>
     <string name="share_text">Segera daftar kelas %s di dicoding.com</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="menu_configuration">Configuration</string>
+    <string name="home_activity">Feature is Under Construction</string>
 </resources>
