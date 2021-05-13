@@ -50,7 +50,7 @@ class TvShowFragment() : Fragment(), TvShowFragmentCallback {
             adapter.setTvShow(viewModel.getTvShow())
 
             // config recyclerView for the data
-            with(fragmentTvShowBinding.rvBookmark) {
+            with(fragmentTvShowBinding.rvTvShow) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 this.adapter = adapter

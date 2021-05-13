@@ -47,10 +47,10 @@ class DetailMovieActivity : AppCompatActivity() {
     private fun populateCourse(movieEntity: MovieEntity) {
         contentDetailMovieBinding.textTitle.text = movieEntity.title
         contentDetailMovieBinding.textDescription.text = movieEntity.description
-        contentDetailMovieBinding.textDate.text = resources.getString(R.string.deadline_date, movieEntity.deadline)
+        contentDetailMovieBinding.textDate.text = resources.getString(R.string.deadline_date, movieEntity.date)
 
         Glide.with(this)
-                .load(movieEntity.imagePath)
+                .load(movieEntity.imgPath)
                 .transform(RoundedCorners(20))
                 .apply(
                         RequestOptions.placeholderOf(R.drawable.ic_loading)

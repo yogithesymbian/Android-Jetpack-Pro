@@ -45,7 +45,7 @@ class MovieFragment() : Fragment() {
             academyAdapter.setMovies(viewModel.getMovies())
 
             // config recyclerView for the data
-            with(fragmentMovieBinding.rvAcademy) {
+            with(fragmentMovieBinding.rvMovie) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 adapter = academyAdapter

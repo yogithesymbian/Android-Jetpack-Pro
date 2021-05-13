@@ -11,9 +11,15 @@
         android:id="@+id/toolbar_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="12dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:contentInsetStartWithNavigation="0dp"
+        app:navigationIcon="@drawable/ic_video_4k"
         app:title="YoRebahan Movie"
         app:titleTextColor="@color/rebahan_200"
         tools:ignore="UnusedAttribute" />
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"

@@ -1,7 +1,6 @@
 package id.scodeid.yorebahanmovie.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -15,8 +14,8 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var activityHomeBinding: ActivityHomeBinding
 
     private val tabIcons = intArrayOf(
-        R.drawable.ic_tv,
-        R.drawable.ic_movie,
+            R.drawable.ic_tv,
+            R.drawable.ic_movie,
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +25,9 @@ class HomeActivity : AppCompatActivity() {
         activityHomeBinding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(activityHomeBinding.root)
         setSupportActionBar(activityHomeBinding.toolbarHome)
+        activityHomeBinding.toolbarHome.setNavigationOnClickListener {
+            Toast.makeText(this, "Feature is Under Construction", Toast.LENGTH_SHORT).show()
+        }
 
         // config tabs layout
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)

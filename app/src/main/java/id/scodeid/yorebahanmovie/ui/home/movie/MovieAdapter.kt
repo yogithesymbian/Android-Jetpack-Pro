@@ -38,12 +38,16 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
             RecyclerView.ViewHolder(binding.root) {
         fun bind(movieEntity: MovieEntity) {
             with(binding) {
+
                 tvItemTitle.text = movieEntity.title
-                tvItemDate.text =
-                        itemView.resources.getString(R.string.deadline_date, movieEntity.deadline)
+                (movieEntity.videoPlus + ' ' + movieEntity.date + ' ' + movieEntity.genre + ' ' + movieEntity.videoTime).also {
+                    tvItemDateAndGenre.text = it
+                }
+                tvItemDesc.text = movieEntity.description
+                tvItemCuan.text = itemView.resources.getString(R.string.item_movie_get_cuan, movieEntity.cuanValue)
 
                 Glide.with(itemView.context)
-                        .load(movieEntity.imagePath)
+                        .load(movieEntity.imgPath)
                         .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
                         .error(R.drawable.ic_error)
                         .into(imgPoster)

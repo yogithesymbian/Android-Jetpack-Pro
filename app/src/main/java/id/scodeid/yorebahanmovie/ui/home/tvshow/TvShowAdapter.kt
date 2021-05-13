@@ -9,7 +9,6 @@ import com.bumptech.glide.request.RequestOptions
 import id.scodeid.yorebahanmovie.R
 import id.scodeid.yorebahanmovie.databinding.ItemsTvShowBinding
 import id.scodeid.yorebahanmovie.entity.TvShowEntity
-import id.scodeid.yorebahanmovie.ui.home.movie.detail.DetailMovieActivity
 import id.scodeid.yorebahanmovie.ui.home.tvshow.detail.DetailTvShowActivity
 
 class TvShowAdapter(private val callback: TvShowFragmentCallback) :
@@ -47,7 +46,7 @@ class TvShowAdapter(private val callback: TvShowFragmentCallback) :
         fun bind(tvShowEntity: TvShowEntity) {
             with(binding) {
                 tvItemTitle.text = tvShowEntity.title
-                tvItemDate.text =
+                tvItemDateAndGenre.text =
                     itemView.resources.getString(R.string.deadline_date, tvShowEntity.deadline)
                 Glide.with(itemView.context)
                     .load(tvShowEntity.imagePath)
@@ -56,7 +55,7 @@ class TvShowAdapter(private val callback: TvShowFragmentCallback) :
                     .into(imgPoster)
 
                 itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, DetailMovieActivity::class.java)
+                    val intent = Intent(itemView.context, DetailTvShowActivity::class.java)
                     intent.putExtra(DetailTvShowActivity.EXTRA_DETAIL_DATA, tvShowEntity.tvShowId)
                     itemView.context.startActivity(intent)
                 }
