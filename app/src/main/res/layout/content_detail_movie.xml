@@ -9,69 +9,233 @@
     android:padding="16dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <ImageView
-        android:id="@+id/image_poster"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="18dp"
-        android:src="@color/teal_200"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_poster_1"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:outlineSpotShadowColor="@color/white"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        tools:ignore="UnusedAttribute">
+
+        <ImageView
+            android:id="@+id/img_backdrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/poster_alita" />
+    </androidx.cardview.widget.CardView>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image_poster"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="32dp"
+        android:elevation="8dp"
+        android:outlineSpotShadowColor="@color/white"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cv_poster_1"
+        app:layout_constraintEnd_toEndOf="@+id/cv_poster_1"
+        app:layout_constraintStart_toStartOf="@+id/cv_poster_1"
+        app:layout_constraintTop_toBottomOf="@+id/cv_poster_1"
+        tools:ignore="ContentDescription,UnusedAttribute"
+        tools:src="@drawable/poster_alita" />
 
     <TextView
-        android:id="@+id/text_title"
+        android:id="@+id/tv_cuan_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rotation="-45"
+        android:textSize="11sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/btn_rating"
+        app:layout_constraintStart_toStartOf="@+id/cv_poster_1"
+        app:layout_constraintTop_toBottomOf="@+id/cv_poster_1"
+        app:layout_constraintVertical_bias="0.64"
+        tools:ignore="SmallSp"
+        tools:text="nonton ini dapet cuan $100" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_user_score"
+        android:layout_width="55dp"
+        android:layout_height="58dp"
+        app:cardBackgroundColor="@color/rebahan_200"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toTopOf="@+id/text_desc"
+        app:layout_constraintEnd_toEndOf="@+id/btn_release"
+        app:layout_constraintHorizontal_bias="0.69"
+        app:layout_constraintStart_toStartOf="@+id/btn_release"
+        app:layout_constraintTop_toBottomOf="@+id/btn_release"
+        tools:ignore="UnusedAttribute">
+
+        <TextView
+            android:id="@+id/tv_user_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:ignore="SmallSp"
+            tools:text="10%" />
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_play_yo_rebahan"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ic_yo_rebahan_play"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        tools:ignore="ContentDescription" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_rating"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_release"
+        app:layout_constraintEnd_toStartOf="@+id/image_poster"
+        app:layout_constraintStart_toStartOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/btn_play_yo_rebahan"
+        tools:text="Rating 12+" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_release"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintStart_toEndOf="@+id/image_poster"
+        app:layout_constraintTop_toBottomOf="@+id/btn_play_yo_rebahan"
+        tools:text="Status Belum Rilis" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textColor="@color/rebahan_200"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/text_date"
-        app:layout_constraintTop_toBottomOf="@+id/text_date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_poster"
         tools:text="@string/title" />
 
     <TextView
-        android:id="@+id/text_date"
+        android:id="@+id/tv_vid_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:gravity="start"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_poster"
-        tools:text="@string/dateline" />
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_rating"
+        app:layout_constraintEnd_toEndOf="@+id/btn_play_yo_rebahan"
+        app:layout_constraintStart_toStartOf="@+id/btn_play_yo_rebahan"
+        app:layout_constraintTop_toTopOf="@+id/btn_rating"
+        tools:text="2h 19m" />
 
-    <Button
-        android:id="@+id/btn_start"
-        android:layout_width="wrap_content"
+    <View
+        android:id="@+id/v_1"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/gray90"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/btn_rating" />
+
+    <TextView
+        android:id="@+id/tv_genre"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/bg_button"
-        android:text="@string/start_learn"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/text_title"
-        app:layout_constraintTop_toBottomOf="@+id/text_title" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/v_1"
+        tools:text="Genre : (RU) Kejahatan, Aksi, Drama, Sejarah" />
+
+    <TextView
+        android:id="@+id/tv_director"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_genre"
+        tools:text="Director : Alexey Sidorov" />
+
+    <TextView
+        android:id="@+id/tv_lang"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_director"
+        tools:text="Language : Rusia" />
+
+    <TextView
+        android:id="@+id/tv_dead_line"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lang"
+        tools:text="Dateline : Jumat 2021" />
+
+
+    <View
+        android:id="@+id/v_3"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/gray90"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dead_line" />
+
 
     <TextView
         android:id="@+id/text_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/description_course"
+        android:layout_marginTop="8dp"
+        android:text="@string/description_movie"
         android:textColor="@color/teal_700"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_start" />
+        app:layout_constraintTop_toBottomOf="@+id/v_3" />
+
 
     <TextView
-        android:id="@+id/text_description"
+        android:id="@+id/tv_desc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -80,21 +244,61 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_desc"
-        tools:text="@string/description" />
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aperiam aspernatur aut dolores ea eos esse hic iure vel voluptatem! Corporis dolorem inventore perferendis perspiciatis quidem unde vitae voluptatum. Delectus." />
+
 
     <TextView
-        android:id="@+id/text_list_module"
-        android:layout_width="0dp"
+        android:id="@+id/text_budget"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/list_module"
+        android:layout_marginTop="8dp"
+        android:text="@string/content_detail_movie_budget"
+        android:textColor="@color/teal_700"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
+
+    <TextView
+        android:id="@+id/text_income"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/content_detail_movie_income"
         android:textColor="@color/teal_700"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_description" />
+        app:layout_constraintTop_toTopOf="@+id/text_budget" />
 
+    <TextView
+        android:id="@+id/tv_budget_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="201dp"
+        android:layout_marginRight="201dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/text_budget"
+        app:layout_constraintTop_toBottomOf="@+id/text_budget"
+        tools:text="$8,000,000.00" />
+
+    <TextView
+        android:id="@+id/tv_income_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/text_income"
+        app:layout_constraintTop_toBottomOf="@+id/text_income"
+        tools:text="$8,000,000.00" />
+
+    <TextView
+        android:id="@+id/tv_adult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/content_detail_movie_adult_notice"
+        android:textColor="@android:color/holo_red_dark"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/tv_desc"
+        app:layout_constraintStart_toStartOf="@+id/tv_desc"
+        app:layout_constraintTop_toBottomOf="@+id/tv_budget_value" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

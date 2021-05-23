@@ -1,15 +1,26 @@
 package id.scodeid.yorebahanmovie.ui.home.movie.detail
 
+import android.annotation.SuppressLint
+import android.graphics.Paint
+import android.opengl.Visibility
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.snackbar.Snackbar
 import id.scodeid.yorebahanmovie.R
 import id.scodeid.yorebahanmovie.databinding.ActivityDetailMovieBinding
 import id.scodeid.yorebahanmovie.databinding.ContentDetailMovieBinding
 import id.scodeid.yorebahanmovie.entity.MovieEntity
+import id.scodeid.yorebahanmovie.utils.invisible
+import id.scodeid.yorebahanmovie.utils.showSnackbar
+import id.scodeid.yorebahanmovie.utils.visible
 
 class DetailMovieActivity : AppCompatActivity() {
 
@@ -29,8 +40,14 @@ class DetailMovieActivity : AppCompatActivity() {
 
         setSupportActionBar(activityDetailMovieBinding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        activityDetailMovieBinding.toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
 
-        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailMovieViewModel::class.java]
+        val viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        )[DetailMovieViewModel::class.java]
 
         val extras = intent.extras
         if (extras != null) { // check intent data
@@ -44,17 +61,89 @@ class DetailMovieActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("StringFormatInvalid") // percent user score
     private fun populateCourse(movieEntity: MovieEntity) {
-        contentDetailMovieBinding.textTitle.text = movieEntity.title
-        contentDetailMovieBinding.textDescription.text = movieEntity.description
-        contentDetailMovieBinding.textDate.text = resources.getString(R.string.deadline_date, movieEntity.date)
+        contentDetailMovieBinding.let {
+            it.btnPlayYoRebahan.setOnClickListener {
+                Toast.makeText(
+                    this,
+                    getString(R.string.utils_under_construction),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            it.cvUserScore.also { cus ->
+                cus.setOnClickListener {
+                    cus.showSnackbar(
+                        getString(
+                            R.string.detail_movie_activity_video_score,
+                            movieEntity.userScore
+                        ), Snackbar.LENGTH_SHORT
+                    )
+                }
+            }
 
-        Glide.with(this)
+            when (movieEntity.userScore.toInt()) {
+                in 70..80 -> it.cvUserScore.setCardBackgroundColor(resources.getColor(R.color.gold))
+                in 80..100 -> it.cvUserScore.setCardBackgroundColor(resources.getColor(R.color.rebahan_200))
+                else -> it.cvUserScore.setCardBackgroundColor(resources.getColor(R.color.black))
+            }
+
+            if (movieEntity.adult)
+                it.tvAdult.visible()
+            else
+                it.tvAdult.invisible()
+
+            resources.let { r ->
+                it.tvCuanValue.text =
+                    r.getString(R.string.item_movie_get_cuan_val, movieEntity.cuanValue)
+                it.btnRating.text =
+                    r.getString(R.string.content_detail_movie_val_rating, movieEntity.rating)
+                it.tvDeadLine.text = r.getString(R.string.deadline_date, movieEntity.date)
+
+                it.btnRelease.text =
+                    r.getString(R.string.content_detail_movie_val_status, movieEntity.status)
+                it.tvGenre.text =
+                    r.getString(R.string.content_detail_movie_val_genre, movieEntity.genre)
+                it.tvDirector.text =
+                    r.getString(R.string.content_detail_movie_val_director, movieEntity.director)
+
+                it.tvLang.text =
+                    r.getString(R.string.content_detail_movie_val_lang, movieEntity.language)
+                it.tvUserScore.text = r.getString(
+                    R.string.content_detail_movie_val_user_score_percent,
+                    movieEntity.userScore
+                )
+            }
+            it.tvTitle.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+            it.tvTitle.text = movieEntity.title
+            it.tvDesc.text = movieEntity.description
+
+            it.tvVidTime.text = movieEntity.videoTime
+            it.tvBudgetValue.text = movieEntity.budget
+            it.tvIncomeValue.text = movieEntity.income
+
+            Glide.with(this)
+                .asBitmap()
+                .format(DecodeFormat.PREFER_ARGB_8888)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .load(movieEntity.imgPath)
                 .transform(RoundedCorners(20))
                 .apply(
-                        RequestOptions.placeholderOf(R.drawable.ic_loading)
-                                .error(R.drawable.ic_error))
-                .into(contentDetailMovieBinding.imagePoster)
+                    RequestOptions.placeholderOf(R.drawable.ic_loading)
+                        .error(R.drawable.ic_error)
+                )
+                .into(it.imagePoster)
+            Glide.with(this)
+                .asBitmap()
+                .format(DecodeFormat.PREFER_ARGB_8888)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .load(movieEntity.imgPath)
+                .transform(RoundedCorners(20))
+                .apply(
+                    RequestOptions.placeholderOf(R.drawable.ic_loading)
+                        .error(R.drawable.ic_error)
+                )
+                .into(it.imgBackdrop)
+        }
     }
 }

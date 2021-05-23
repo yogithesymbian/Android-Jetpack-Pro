@@ -45,18 +45,24 @@ class TvShowAdapter(private val callback: TvShowFragmentCallback) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(tvShowEntity: TvShowEntity) {
             with(binding) {
-                tvItemTitle.text = tvShowEntity.title
-                tvItemDateAndGenre.text =
-                    itemView.resources.getString(R.string.deadline_date, tvShowEntity.deadline)
+
                 Glide.with(itemView.context)
-                    .load(tvShowEntity.imagePath)
-                    .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
-                    .error(R.drawable.ic_error)
-                    .into(imgPoster)
+                        .load(tvShowEntity.imgPath)
+                        .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
+                        .error(R.drawable.ic_error)
+                        .into(imgPoster)
+                tvItemTitle.text = tvShowEntity.title
+                (tvShowEntity.videoPlus + ' ' + tvShowEntity.date + ' ' + tvShowEntity.genre + ' ' + tvShowEntity.videoTime).also {
+                    tvGenre.text = it
+                }
+
+                tvItemDesc.text = tvShowEntity.description
+                tvItemCuan.text = itemView.resources.getString(R.string.item_movie_get_cuan)
+                tvItemCuanGold.text = tvShowEntity.cuanValue
 
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailTvShowActivity::class.java)
-                    intent.putExtra(DetailTvShowActivity.EXTRA_DETAIL_DATA, tvShowEntity.tvShowId)
+                    intent.putExtra(DetailTvShowActivity.EXTRA_DETAIL_DATA_TV, tvShowEntity.tvShowId)
                     itemView.context.startActivity(intent)
                 }
 

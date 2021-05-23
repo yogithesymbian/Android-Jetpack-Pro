@@ -2,9 +2,23 @@ package id.scodeid.yorebahanmovie.entity
 
 data class TvShowEntity(
         var tvShowId: String,
-        var title: String,
-        var description: String,
-        var deadline: String,
         var bookmarked: Boolean = false,
-        var imagePath: String
+        var imgPath: Int,
+        var title: String,
+
+        var videoPlus: String,
+        var date: String,
+        var genre: String,
+        var videoTime: String,
+
+        var description: String,
+        var cuanValue: String,
+        var rating: String,
+        var status: String,
+        var director: String,
+
+        var language: String,
+        var budget: String,
+        var income: String,
+        var adult: Boolean = false,
 )

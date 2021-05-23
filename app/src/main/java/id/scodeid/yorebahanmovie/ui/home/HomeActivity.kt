@@ -26,7 +26,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(activityHomeBinding.root)
         setSupportActionBar(activityHomeBinding.toolbarHome)
         activityHomeBinding.toolbarHome.setNavigationOnClickListener {
-            Toast.makeText(this, "Feature is Under Construction", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.utils_under_construction), Toast.LENGTH_SHORT).show()
         }
 
         // config tabs layout
@@ -56,7 +56,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_config -> {
-                Toast.makeText(this, getString(R.string.home_activity), Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.utils_under_construction), Toast.LENGTH_SHORT).show()
                 return true
             }
         }

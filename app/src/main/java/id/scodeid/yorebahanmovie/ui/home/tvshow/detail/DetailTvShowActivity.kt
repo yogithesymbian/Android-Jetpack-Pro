@@ -14,7 +14,7 @@ import id.scodeid.yorebahanmovie.entity.TvShowEntity
 class DetailTvShowActivity : AppCompatActivity() {
 
     companion object {
-        const val EXTRA_DETAIL_DATA = "extra_detail_data"
+        const val EXTRA_DETAIL_DATA_TV = "extra_detail_data_tv"
     }
 
     // init binding view
@@ -29,6 +29,9 @@ class DetailTvShowActivity : AppCompatActivity() {
 
         setSupportActionBar(activityDetailTvShowBinding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        activityDetailTvShowBinding.toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
 
         val viewModel = ViewModelProvider(
             this,
@@ -37,9 +40,8 @@ class DetailTvShowActivity : AppCompatActivity() {
 
         val extras = intent.extras
         if (extras != null) { // check intent data
-            val tvShowId = extras.getString(EXTRA_DETAIL_DATA)
+            val tvShowId = extras.getString(EXTRA_DETAIL_DATA_TV)
             if (tvShowId != null) {
-
                 viewModel.setSelectedTvShow(tvShowId)
                 populateCourse(viewModel.getTvShowById())
             }
@@ -48,18 +50,22 @@ class DetailTvShowActivity : AppCompatActivity() {
     }
 
     private fun populateCourse(tvShowEntity: TvShowEntity) {
-        contentDetailTvShowBinding.textTitle.text = tvShowEntity.title
-        contentDetailTvShowBinding.textDescription.text = tvShowEntity.description
-        contentDetailTvShowBinding.textDate.text =
-            resources.getString(R.string.deadline_date, tvShowEntity.deadline)
+        contentDetailTvShowBinding.let {
+            resources.let { r ->
+                it.textDate.text =
+                    r.getString(R.string.deadline_date, tvShowEntity.date)
+            }
+            it.tvTitle.text = tvShowEntity.title
+            it.tvDesc.text = tvShowEntity.description
 
-        Glide.with(this)
-            .load(tvShowEntity.imagePath)
-            .transform(RoundedCorners(20))
-            .apply(
-                RequestOptions.placeholderOf(R.drawable.ic_loading)
-                    .error(R.drawable.ic_error)
-            )
-            .into(contentDetailTvShowBinding.imagePoster)
+            Glide.with(this)
+                .load(tvShowEntity.imgPath)
+                .transform(RoundedCorners(20))
+                .apply(
+                    RequestOptions.placeholderOf(R.drawable.ic_loading)
+                        .error(R.drawable.ic_error)
+                )
+                .into(it.imagePoster)
+        }
     }
 }

@@ -38,8 +38,8 @@ class HomeActivityTest {
     @Test
     fun loadDetailMovie(){
         onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
-        onView(withId(R.id.text_title)).check(matches(isDisplayed()))
-        onView(withId(R.id.text_title)).check(matches(withText(dummyMovie[0].title)))
+        onView(withId(R.id.tv_title)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_title)).check(matches(withText(dummyMovie[0].title)))
         onView(withId(R.id.text_date)).check(matches(isDisplayed()))
         onView(withId(R.id.text_date)).check(matches(withText("Deadline ${dummyMovie[0].deadline}")))
     }

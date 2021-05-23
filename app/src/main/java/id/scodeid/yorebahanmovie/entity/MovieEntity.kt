@@ -7,14 +7,14 @@ data class MovieEntity(
         var imgPath: Int,
         var title: String,
 
-        var videoPlus: String,
+        var rating: String,
         var date: String,
         var genre: String,
         var videoTime: String,
 
         var description: String,
         var cuanValue: String,
-        var rating: String,
+        var userScore: String,
         var status: String,
         var director: String,
 

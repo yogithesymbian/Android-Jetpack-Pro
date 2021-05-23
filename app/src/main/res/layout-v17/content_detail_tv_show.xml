@@ -21,7 +21,7 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/text_title"
+        android:id="@+id/tv_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -49,19 +49,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_button"
-        android:text="@string/start_learn"
+        android:text="learn"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/text_title"
-        app:layout_constraintTop_toBottomOf="@+id/text_title" />
+        app:layout_constraintStart_toStartOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
     <TextView
         android:id="@+id/text_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="@string/description_course"
+        android:text="@string/description_movie"
         android:textColor="@color/teal_700"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -71,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_start" />
 
     <TextView
-        android:id="@+id/text_description"
+        android:id="@+id/tv_desc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -87,14 +87,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/list_module"
+        android:text="module"
         android:textColor="@color/teal_700"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_description" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

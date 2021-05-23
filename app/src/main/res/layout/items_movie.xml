@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    app:cardCornerRadius="4dp"
-    app:cardElevation="4dp"
-    app:cardMaxElevation="4dp"
+    app:cardCornerRadius="8dp"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,8 +15,8 @@
 
         <ImageView
             android:id="@+id/img_poster"
-            android:layout_width="135dp"
-            android:layout_height="135dp"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
@@ -39,6 +37,7 @@
             android:ellipsize="end"
             android:gravity="start"
             android:maxLines="1"
+            android:textColor="@color/rebahan_600"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +46,7 @@
             tools:text="Story of Khalifah Umar Ibn Khatab R.A" />
 
         <TextView
-            android:id="@+id/tv_item_date_and_genre"
+            android:id="@+id/tv_genre"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -58,7 +57,7 @@
             app:layout_constraintStart_toStartOf="@+id/tv_item_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_item_title"
             tools:ignore="SmallSp"
-            tools:text="12+ 01/01/2019 (RU) Kebaikan, Aksi, Muslim, Sejarah 2h 19m" />
+            tools:text="(RU) Kebaikan, Aksi, Muslim, Sejarah" />
 
         <View
             android:id="@+id/view_break"
@@ -66,10 +65,10 @@
             android:layout_height="4dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintEnd_toEndOf="@+id/tv_item_date_and_genre"
-            app:layout_constraintStart_toStartOf="@+id/tv_item_date_and_genre"
-            app:layout_constraintTop_toBottomOf="@+id/tv_item_date_and_genre" />
+            android:background="@color/black_30"
+            app:layout_constraintEnd_toEndOf="@+id/tv_genre"
+            app:layout_constraintStart_toStartOf="@+id/tv_genre"
+            app:layout_constraintTop_toBottomOf="@+id/tv_genre" />
 
         <TextView
             android:id="@+id/tv_item_desc"
@@ -86,6 +85,47 @@
             tools:ignore="SmallSp"
             tools:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci debitis, deserunt dolore, eos fugit hic illum ipsa itaque libero maiores non perferendis quas, quidem sequi. Beatae dicta quae quibusdam?" />
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_user_score"
+            android:layout_width="35dp"
+            android:layout_height="38dp"
+            app:cardBackgroundColor="@color/rebahan_200"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="4dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toTopOf="@+id/tv_video_time"
+            app:layout_constraintEnd_toEndOf="@+id/img_poster"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_poster"
+            tools:ignore="UnusedAttribute">
+
+            <TextView
+                android:id="@+id/tv_user_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="8sp"
+                android:textStyle="bold"
+                tools:ignore="SmallSp"
+                tools:text="10%" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_video_time"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:background="@color/black_30"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/img_poster"
+            app:layout_constraintStart_toStartOf="@+id/img_poster"
+            tools:text="2h 19m" />
+
         <TextView
             android:id="@+id/tv_item_cuan"
             android:layout_width="0dp"
@@ -93,12 +133,28 @@
             android:maxLines="1"
             android:textAllCaps="false"
             android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/img_poster"
+            app:layout_constraintStart_toStartOf="@+id/tv_item_desc"
+            app:layout_constraintTop_toBottomOf="@+id/tv_item_desc"
+            tools:text="a litle hope lorem" />
+
+        <TextView
+            android:id="@+id/tv_item_cuan_gold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginLeft="3dp"
+            android:maxLines="1"
+            android:textAllCaps="false"
+            android:textColor="@color/gold"
+            android:textSize="12sp"
             android:textStyle="italic|bold"
             app:layout_constraintBottom_toBottomOf="@+id/img_poster"
             app:layout_constraintEnd_toEndOf="@+id/tv_item_desc"
-            app:layout_constraintStart_toStartOf="@+id/tv_item_desc"
+            app:layout_constraintStart_toEndOf="@+id/tv_item_cuan"
             app:layout_constraintTop_toBottomOf="@+id/tv_item_desc"
-            tools:text="nonton dapet cuan $10" />
+            tools:text="$10" />
 
 
         <ImageButton
@@ -108,11 +164,11 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="@android:color/transparent"
-            android:tint="@color/rebahan_200"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_item_desc"
             app:srcCompat="@drawable/ic_share_blue"
+            app:tint="@color/rebahan_200"
             tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
