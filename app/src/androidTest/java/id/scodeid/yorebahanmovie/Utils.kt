@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package id.scodeid.yorebahanmovie
 
 import androidx.test.espresso.ViewAssertion
