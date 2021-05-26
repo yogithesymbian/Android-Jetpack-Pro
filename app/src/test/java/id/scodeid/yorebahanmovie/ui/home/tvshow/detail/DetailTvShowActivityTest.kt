@@ -23,10 +23,20 @@ class DetailTvShowActivityTest {
         val tvShowEntity = viewModel.getTvShowById()
         assertNotNull(tvShowEntity)
         assertEquals(dummyTvShow.tvShowId, tvShowEntity.tvShowId)
-        assertEquals(dummyTvShow.date, tvShowEntity.date)
-        assertEquals(dummyTvShow.description, tvShowEntity.description)
+        assertEquals(dummyTvShow.bookmarked, tvShowEntity.bookmarked)
         assertEquals(dummyTvShow.imgPath, tvShowEntity.imgPath)
         assertEquals(dummyTvShow.title, tvShowEntity.title)
+        assertEquals(dummyTvShow.rating, tvShowEntity.rating)
+        assertEquals(dummyTvShow.date, tvShowEntity.date)
+        assertEquals(dummyTvShow.genre, tvShowEntity.genre)
+        assertEquals(dummyTvShow.videoTime, tvShowEntity.videoTime)
+        assertEquals(dummyTvShow.description, tvShowEntity.description)
+        assertEquals(dummyTvShow.cuanValue, tvShowEntity.cuanValue)
+        assertEquals(dummyTvShow.videoScore, tvShowEntity.videoScore)
+        assertEquals(dummyTvShow.status, tvShowEntity.status)
+        assertEquals(dummyTvShow.creator, tvShowEntity.creator)
+        assertEquals(dummyTvShow.language, tvShowEntity.language)
+        assertEquals(dummyTvShow.type, tvShowEntity.type)
+        assertEquals(dummyTvShow.adult, tvShowEntity.adult)
     }
-
 }

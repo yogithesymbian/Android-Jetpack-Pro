@@ -12,7 +12,7 @@
     <string name="release_date">Release %s</string>
     <string name="item_movie_get_cuan">Nonton ini dapet cuan</string>
     <string name="item_movie_get_cuan_val">Nonton ini dapet cuan %s</string>
-    <string name="share_text">Segera daftar kelas %s di dicoding.com</string>
+    <string name="share_text">Segera tonton video %s bisa dapet cuan senilai %s</string>
     <string name="menu_configuration">Configuration</string>
     <string name="title_activity_detail_movie">Detail MOVIE</string>
     <string name="content_detail_movie_budget">Budget</string>

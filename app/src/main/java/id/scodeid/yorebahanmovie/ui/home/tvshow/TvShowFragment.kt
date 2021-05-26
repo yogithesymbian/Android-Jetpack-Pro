@@ -70,7 +70,9 @@ class TvShowFragment : Fragment(), TvShowFragmentCallback {
                 .from(requireActivity())
                 .setType(mimeType)
                 .setChooserTitle("Bagikan aplikasi ini sekarang")
-                .setText(resources.getString(R.string.share_text, tvShowEntity.title))
+                .setText(resources.getString(R.string.share_text,
+                    tvShowEntity.title,
+                    tvShowEntity.cuanValue))
                 .startChooser()
         }
     }

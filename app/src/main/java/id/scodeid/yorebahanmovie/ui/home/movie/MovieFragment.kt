@@ -65,7 +65,9 @@ class MovieFragment : Fragment(), MovieFragmentCallback {
                 .from(requireActivity())
                 .setType(mimeType)
                 .setChooserTitle("Bagikan aplikasi ini sekarang")
-                .setText(resources.getString(R.string.share_text, movieEntity.title))
+                .setText(resources.getString(R.string.share_text,
+                    movieEntity.title,
+                    movieEntity.cuanValue))
                 .startChooser()
         }
     }

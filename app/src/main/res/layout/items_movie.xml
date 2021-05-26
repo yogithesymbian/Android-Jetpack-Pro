@@ -85,6 +85,7 @@
             tools:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci debitis, deserunt dolore, eos fugit hic illum ipsa itaque libero maiores non perferendis quas, quidem sequi. Beatae dicta quae quibusdam?" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_user_score"
             android:layout_width="35dp"
             android:layout_height="38dp"
             app:cardBackgroundColor="@color/rebahan_200"
@@ -137,6 +138,7 @@
             tools:text="a litle hope lorem" />
 
         <TextView
+            android:id="@+id/tv_item_cuan_gold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
@@ -154,6 +156,7 @@
 
 
         <ImageButton
+            android:id="@+id/img_share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"

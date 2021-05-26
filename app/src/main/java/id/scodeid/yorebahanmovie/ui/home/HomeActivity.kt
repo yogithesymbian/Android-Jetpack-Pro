@@ -41,7 +41,7 @@ class HomeActivity : AppCompatActivity() {
     private fun setTabIcons() { // set by position tab - ascending
         tabIcons.let {
             for (i in it.indices) {
-                activityHomeBinding.tabs.getTabAt(i).setIcon(it[i])
+                activityHomeBinding.tabs.getTabAt(i)?.setIcon(it[i])
             }
         }
     }

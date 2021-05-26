@@ -24,10 +24,21 @@ class DetailMovieViewModelTest {
         val movieEntity = viewModel.getMovieById()
         assertNotNull(movieEntity)
         assertEquals(dummyMovies.movieId, movieEntity.movieId)
-        assertEquals(dummyMovies.date, movieEntity.date)
-        assertEquals(dummyMovies.description, movieEntity.description)
+        assertEquals(dummyMovies.bookmarked, movieEntity.bookmarked)
         assertEquals(dummyMovies.imgPath, movieEntity.imgPath)
         assertEquals(dummyMovies.title, movieEntity.title)
+        assertEquals(dummyMovies.rating, movieEntity.rating)
+        assertEquals(dummyMovies.date, movieEntity.date)
+        assertEquals(dummyMovies.genre, movieEntity.genre)
+        assertEquals(dummyMovies.videoTime, movieEntity.videoTime)
+        assertEquals(dummyMovies.description, movieEntity.description)
+        assertEquals(dummyMovies.cuanValue, movieEntity.cuanValue)
+        assertEquals(dummyMovies.videoScore, movieEntity.videoScore)
+        assertEquals(dummyMovies.status, movieEntity.status)
+        assertEquals(dummyMovies.director, movieEntity.director)
+        assertEquals(dummyMovies.language, movieEntity.language)
+        assertEquals(dummyMovies.income, movieEntity.income)
+        assertEquals(dummyMovies.adult, movieEntity.adult)
     }
 
 }
