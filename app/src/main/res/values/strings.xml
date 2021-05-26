@@ -31,5 +31,9 @@
     <string name="deskripsi_tv_show">Deskripsi TV SHOW</string>
     <string name="content_detail_tv_show_kreator">Kreator</string>
     <string name="content_detail_tv_show_jenis">Jenis</string>
+    <string name="content_data_empty_tv_data_is_empty">Data is Empty</string>
+    <string name="content_failed_load_something_has_wrong">Something has wrong!</string>
+    <string name="testDataFailOnLoad">testDataFailOnLoad</string>
+    <string name="testEmpty">testEmpty</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package id.scodeid.yorebahanmovie.ui.home.tvshow
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +11,7 @@ import id.scodeid.yorebahanmovie.R
 import id.scodeid.yorebahanmovie.databinding.ItemsTvShowBinding
 import id.scodeid.yorebahanmovie.entity.TvShowEntity
 import id.scodeid.yorebahanmovie.ui.home.tvshow.detail.DetailTvShowActivity
+import id.scodeid.yorebahanmovie.utils.isEmpty
 
 class TvShowAdapter(private val callback: TvShowFragmentCallback) :
     RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
@@ -17,10 +19,15 @@ class TvShowAdapter(private val callback: TvShowFragmentCallback) :
     private val arrListTvShowEntities = ArrayList<TvShowEntity>()
 
     // init load a manipulation data
-    fun setTvShow(listMovieEntities: List<TvShowEntity>?) {
+    fun setTvShow(listMovieEntities: List<TvShowEntity>?, context: TvShowFragment) {
         if (listMovieEntities == null) return
         this.arrListTvShowEntities.clear()
         this.arrListTvShowEntities.addAll(listMovieEntities)
+        if (isEmpty == context.getString(R.string.testEmpty)) {// for testing
+            Log.d(TAG_LOG, "is in testing")
+            this.arrListTvShowEntities.clear()
+        } else
+            Log.d(TAG_LOG, "not in testing")
     }
 
     override fun onCreateViewHolder(
@@ -39,7 +46,12 @@ class TvShowAdapter(private val callback: TvShowFragmentCallback) :
     override fun onBindViewHolder(holder: TvShowAdapter.ViewHolder, position: Int) =
         holder.bind(arrListTvShowEntities[position])
 
-    override fun getItemCount(): Int = arrListTvShowEntities.size
+    override fun getItemCount(): Int {
+        arrListTvShowEntities.size.let {
+            callback.onCheckDataSize(it)
+            return arrListTvShowEntities.size
+        }
+    }
 
     inner class ViewHolder(private val binding: ItemsTvShowBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -71,6 +83,10 @@ class TvShowAdapter(private val callback: TvShowFragmentCallback) :
             }
 
         }
+    }
+
+    companion object {
+        val TAG_LOG: String = TvShowAdapter::class.java.simpleName
     }
 
 }

@@ -4,6 +4,7 @@ package id.scodeid.yorebahanmovie.ui.home.movie
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +14,7 @@ import id.scodeid.yorebahanmovie.R
 import id.scodeid.yorebahanmovie.databinding.ItemsMovieBinding
 import id.scodeid.yorebahanmovie.entity.MovieEntity
 import id.scodeid.yorebahanmovie.ui.home.movie.detail.DetailMovieActivity
+import id.scodeid.yorebahanmovie.utils.isEmpty
 
 class MovieAdapter(private val callback: MovieFragmentCallback) :
     RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
@@ -20,10 +22,15 @@ class MovieAdapter(private val callback: MovieFragmentCallback) :
     private var arrListMovieEntities = ArrayList<MovieEntity>()
 
     // init load a manipulation data
-    fun setMovies(listMovieEntities: List<MovieEntity>?) {
+    fun setMovies(listMovieEntities: List<MovieEntity>?, context: MovieFragment) {
         if (listMovieEntities == null) return
         this.arrListMovieEntities.clear()
         this.arrListMovieEntities.addAll(listMovieEntities)
+        if (isEmpty == context.getString(R.string.testEmpty)) {// for testing
+            Log.d(TAG_LOG, "is in testing")
+            this.arrListMovieEntities.clear()
+        } else
+            Log.d(TAG_LOG, "not in testing")
     }
 
     override fun onCreateViewHolder(
@@ -42,7 +49,12 @@ class MovieAdapter(private val callback: MovieFragmentCallback) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(arrListMovieEntities[position])
 
-    override fun getItemCount(): Int = arrListMovieEntities.size
+    override fun getItemCount(): Int {
+        arrListMovieEntities.size.let {
+            callback.onCheckDataSize(it)
+            return arrListMovieEntities.size
+        }
+    }
 
     inner class ViewHolder(private val binding: ItemsMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -79,6 +91,10 @@ class MovieAdapter(private val callback: MovieFragmentCallback) :
             }
 
         }
+    }
+
+    companion object {
+        val TAG_LOG: String = MovieAdapter::class.java.simpleName
     }
 
 }

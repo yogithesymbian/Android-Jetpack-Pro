@@ -1,6 +1,7 @@
 package id.scodeid.yorebahanmovie.ui.home.movie
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +14,8 @@ import com.google.android.material.snackbar.Snackbar
 import id.scodeid.yorebahanmovie.R
 import id.scodeid.yorebahanmovie.databinding.FragmentMovieBinding
 import id.scodeid.yorebahanmovie.entity.MovieEntity
-import id.scodeid.yorebahanmovie.utils.showSnackBar
+import id.scodeid.yorebahanmovie.utils.*
+import java.lang.Exception
 
 class MovieFragment : Fragment(), MovieFragmentCallback {
 
@@ -47,7 +49,7 @@ class MovieFragment : Fragment(), MovieFragmentCallback {
 
             // set adapter and load a manipulation data
             val academyAdapter = MovieAdapter(this)
-            academyAdapter.setMovies(viewModel.getMovies())
+            academyAdapter.setMovies(viewModel.getMovies(), this)
 
             // config recyclerView for the data
             with(fragmentMovieBinding.rvMovie) {
@@ -77,6 +79,35 @@ class MovieFragment : Fragment(), MovieFragmentCallback {
             R.string.detail_movie_activity_video_score,
             movieEntity.videoScore
         ), Snackbar.LENGTH_SHORT)
+    }
+
+    override fun onCheckDataSize(size: Int?) {
+
+        fragmentMovieBinding.let {
+            try {
+                if (dataFailOnLoad == getString(R.string.testDataFailOnLoad)) {
+                    it.rvMovie.gone()
+                    it.failedLoadContent.root.visible()
+                } else {
+                    it.rvMovie.visible()
+                    it.failedLoadContent.root.gone()
+
+                    if (size == 0) {
+                        it.rvMovie.gone()
+                        it.emptyContent.root.visible()
+                    } else {
+                        it.rvMovie.visible()
+                        it.emptyContent.root.gone()
+                    }
+                }
+            } catch (e: Exception) {
+                Log.d(TAG_LOG, "an exception $e")
+            }
+        }
+    }
+
+    companion object {
+        val TAG_LOG: String = MovieFragment::class.java.simpleName
     }
 
 }

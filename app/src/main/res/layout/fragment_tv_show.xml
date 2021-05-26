@@ -11,6 +11,7 @@
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:padding="8dp"
+        android:visibility="visible"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,6 +20,24 @@
         tools:listitem="@layout/items_tv_show">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <include
+        android:id="@+id/empty_content"
+        layout="@layout/content_data_empty"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/failed_load_content"
+        layout="@layout/content_failed_load"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         style="?android:attr/progressBarStyle"
