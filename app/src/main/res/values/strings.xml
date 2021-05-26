@@ -5,41 +5,31 @@
     <!-- proyekacademy-->
     <string name="title">Title</string>
     <string name="description">Description</string>
-    <string name="dateline">Dateline 01/01/2019</string>
+    <string name="release">Release 01/01/2019</string>
     <string name="description_movie">Deskripsi Movie</string>
     <string name="home_tv">TV SHOWS</string>
     <string name="home_movie">MOVIES</string>
-    <string name="menu_bookmark">bookmark</string>
-    <string name="message_ok">OK</string>
-    <string name="deadline_date">Deadline %s</string>
+    <string name="release_date">Release %s</string>
     <string name="item_movie_get_cuan">Nonton ini dapet cuan</string>
     <string name="item_movie_get_cuan_val">Nonton ini dapet cuan %s</string>
     <string name="share_text">Segera daftar kelas %s di dicoding.com</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
     <string name="menu_configuration">Configuration</string>
-    <string name="items_movie_tap_here">Ketuk di sini</string>
     <string name="title_activity_detail_movie">Detail MOVIE</string>
     <string name="content_detail_movie_budget">Budget</string>
     <string name="content_detail_movie_income">Income</string>
 
-    <string name="content_detail_movie_val_cuan">Cuan %s</string>
     <string name="content_detail_movie_val_user_score_percent">%s\%%</string>
-    <string name="content_detail_movie_val_rating">Rating %s</string>
-    <string name="content_detail_movie_val_user_score">User Score %s</string>
-    <string name="content_detail_movie_val_status">Status %s</string>
-
-    <string name="content_detail_movie_val_video_time">Video Time %s</string>
+    <string name="content_detail_movie_val_rating">Rating : %s</string>
+    <string name="content_detail_movie_val_status">Status : %s</string>
 
     <string name="content_detail_movie_val_genre">Genre : %s</string>
     <string name="content_detail_movie_val_director">Director : %s</string>
     <string name="content_detail_movie_val_lang">Language : %s</string>
     <string name="utils_under_construction">Feature is Under Construction</string>
-    <string name="detail_movie_activity_video_score">Video Score %s%%</string>
+    <string name="detail_movie_activity_video_score">Video Score : %s%%</string>
     <string name="content_detail_movie_adult_notice">this adult movie, please dont watch if you are not sick</string>
+    <string name="deskripsi_tv_show">Deskripsi TV SHOW</string>
+    <string name="content_detail_tv_show_kreator">Kreator</string>
+    <string name="content_detail_tv_show_jenis">Jenis</string>
 
 </resources>

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="menu_configuration">Configuration</string>
-    <string name="items_movie_tap_here">Ketuk di sini</string>
     <string name="title_activity_detail_movie">Detail MOVIE</string>
     <string name="content_detail_movie_budget">Budget</string>
     <string name="content_detail_movie_income">Income</string>
     <string name="utils_under_construction">Feature is Under Construction</string>
     <string name="detail_movie_activity_video_score">Video Score %s%%</string>
     <string name="content_detail_movie_adult_notice">this adult movie, please dont watch if you are not sick</string>
+    <string name="deskripsi_tv_show">Deskripsi TV SHOW</string>
+    <string name="content_detail_tv_show_kreator">Kreator</string>
+    <string name="content_detail_tv_show_jenis">Jenis</string>
 </resources>

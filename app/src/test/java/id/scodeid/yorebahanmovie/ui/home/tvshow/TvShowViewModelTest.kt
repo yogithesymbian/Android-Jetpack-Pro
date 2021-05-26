@@ -1,4 +1,5 @@
-import id.scodeid.yorebahanmovie.ui.home.tvshow.TvShowViewModel
+package id.scodeid.yorebahanmovie.ui.home.tvshow
+
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
@@ -8,14 +9,14 @@ class TvShowViewModelTest {
     private lateinit var viewModel: TvShowViewModel
 
     @Before
-    fun setUp(){
+    fun setUp() {
         viewModel = TvShowViewModel()
     }
 
     @Test
-    fun getCourse() {
-        val courseEntities = viewModel.getTvShow()
-        assertNotNull(courseEntities)
-        assertEquals(5, courseEntities.size)
+    fun getTvShowData() {
+        val movieEntities = viewModel.getTvShow()
+        assertNotNull(movieEntities)
+        assertEquals(10, movieEntities.size)
     }
 }

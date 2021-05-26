@@ -25,7 +25,7 @@ class TvShowAdapter(private val callback: TvShowFragmentCallback) :
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
-        viewType: Int
+        viewType: Int,
     ): TvShowAdapter.ViewHolder {
         return ViewHolder(
             ItemsTvShowBinding.inflate(
@@ -43,34 +43,33 @@ class TvShowAdapter(private val callback: TvShowFragmentCallback) :
 
     inner class ViewHolder(private val binding: ItemsTvShowBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(tvShowEntity: TvShowEntity) {
-            with(binding) {
-
-                Glide.with(itemView.context)
-                        .load(tvShowEntity.imgPath)
-                        .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
-                        .error(R.drawable.ic_error)
-                        .into(imgPoster)
-                tvItemTitle.text = tvShowEntity.title
-                (tvShowEntity.videoPlus + ' ' + tvShowEntity.date + ' ' + tvShowEntity.genre + ' ' + tvShowEntity.videoTime).also {
-                    tvGenre.text = it
-                }
-
-                tvItemDesc.text = tvShowEntity.description
-                tvItemCuan.text = itemView.resources.getString(R.string.item_movie_get_cuan)
-                tvItemCuanGold.text = tvShowEntity.cuanValue
-
-                itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, DetailTvShowActivity::class.java)
-                    intent.putExtra(DetailTvShowActivity.EXTRA_DETAIL_DATA_TV, tvShowEntity.tvShowId)
-                    itemView.context.startActivity(intent)
-                }
-
-                imgShare.setOnClickListener {
-                    callback.onShareClick(tvShowEntity)
-                }
-
+        fun bind(tvShowEntity: TvShowEntity) = with(binding) {
+            tvItemTitle.text = tvShowEntity.title
+            (tvShowEntity.rating + ' ' + tvShowEntity.date + ' ' + tvShowEntity.genre + ' ' + tvShowEntity.videoTime).also {
+                tvGenre.text = it
             }
+            Glide.with(itemView.context)
+                .load(tvShowEntity.imgPath)
+                .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
+                .error(R.drawable.ic_error)
+                .into(imagePoster)
+            Glide.with(itemView.context)
+                .load(tvShowEntity.imgPath)
+                .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
+                .error(R.drawable.ic_error)
+                .into(imgBackdrop)
+
+            itemView.setOnClickListener {
+                val intent = Intent(itemView.context, DetailTvShowActivity::class.java)
+                intent.putExtra(DetailTvShowActivity.EXTRA_DETAIL_DATA_TV,
+                    tvShowEntity.tvShowId)
+                itemView.context.startActivity(intent)
+            }
+
+            imgShare.setOnClickListener {
+                callback.onShareClick(tvShowEntity)
+            }
+
         }
     }
 

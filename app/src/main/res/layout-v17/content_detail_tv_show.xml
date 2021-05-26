@@ -11,11 +11,13 @@
 
     <ImageView
         android:id="@+id/image_poster"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="18dp"
+        android:layout_width="150dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp"
+        android:scaleType="fitXY"
         android:src="@color/teal_200"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/text_desc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
@@ -24,51 +26,112 @@
         android:id="@+id/tv_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:textColor="@color/rebahan_200"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/text_date"
-        app:layout_constraintTop_toBottomOf="@+id/text_date"
+        app:layout_constraintStart_toEndOf="@+id/image_poster"
+        app:layout_constraintTop_toTopOf="@+id/image_poster"
         tools:text="@string/title" />
 
     <TextView
-        android:id="@+id/text_date"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_date"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
         android:gravity="start"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_poster"
-        tools:text="@string/dateline" />
-
-    <Button
-        android:id="@+id/btn_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/bg_button"
-        android:text="learn"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
         app:layout_constraintStart_toStartOf="@+id/tv_title"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        tools:text="@string/release" />
+
+    <TextView
+        android:id="@+id/tv_genre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_date"
+        tools:text="Genre : (RU) Kejahatan, Aksi, Drama, Sejarah" />
+
+    <TextView
+        android:id="@+id/tv_lang"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_genre"
+        app:layout_constraintStart_toStartOf="@+id/tv_genre"
+        app:layout_constraintTop_toBottomOf="@+id/tv_genre"
+        tools:text="Language : Rusia" />
+
+    <TextView
+        android:id="@+id/tv_release"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_genre"
+        app:layout_constraintStart_toStartOf="@+id/tv_genre"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lang"
+        tools:text="Status : Rilis" />
+
+    <TextView
+        android:id="@+id/tv_video_score"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_genre"
+        app:layout_constraintStart_toStartOf="@+id/tv_genre"
+        app:layout_constraintTop_toBottomOf="@+id/tv_release"
+        tools:text="Video Score : 68%" />
+
+    <TextView
+        android:id="@+id/tv_rating"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_genre"
+        app:layout_constraintStart_toStartOf="@+id/tv_genre"
+        app:layout_constraintTop_toBottomOf="@+id/tv_video_score"
+        tools:text="Rating R" />
+
+    <TextView
+        android:id="@+id/tv_vid_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/black_30"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/image_poster"
+        app:layout_constraintEnd_toEndOf="@+id/image_poster"
+        app:layout_constraintStart_toStartOf="@+id/image_poster"
+        app:layout_constraintTop_toTopOf="@+id/image_poster"
+        app:layout_constraintVertical_bias="1.0"
+        tools:text="2h 19m" />
 
     <TextView
         android:id="@+id/text_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/description_movie"
+        android:layout_marginTop="16dp"
+        android:text="@string/deskripsi_tv_show"
         android:textColor="@color/teal_700"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_start" />
+        app:layout_constraintStart_toStartOf="@+id/image_poster"
+        app:layout_constraintTop_toBottomOf="@+id/tv_rating" />
 
     <TextView
         android:id="@+id/tv_desc"
@@ -76,25 +139,75 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/text_desc"
         app:layout_constraintTop_toBottomOf="@+id/text_desc"
         tools:text="@string/description" />
 
     <TextView
-        android:id="@+id/text_list_module"
-        android:layout_width="0dp"
+        android:id="@+id/tv_creator"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="module"
+        android:layout_marginTop="8dp"
+        android:text="@string/content_detail_tv_show_kreator"
         android:textColor="@color/teal_700"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/image_poster"
         app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
+
+    <TextView
+        android:id="@+id/tv_creator_val"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@+id/text_desc"
+        app:layout_constraintTop_toBottomOf="@+id/tv_creator"
+        tools:text="Yogi Arif Widodo" />
+
+    <TextView
+        android:id="@+id/tv_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/content_detail_tv_show_jenis"
+        android:textColor="@color/teal_700"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@+id/image_poster"
+        app:layout_constraintTop_toBottomOf="@+id/tv_creator_val" />
+
+    <TextView
+        android:id="@+id/tv_type_val"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@+id/text_desc"
+        app:layout_constraintTop_toBottomOf="@+id/tv_type"
+        tools:text="Scripted" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_play_yo_rebahan"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/ic_yo_rebahan_play"
+        android:elevation="8dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/image_poster"
+        app:layout_constraintEnd_toEndOf="@+id/image_poster"
+        app:layout_constraintStart_toStartOf="@+id/image_poster"
+        app:layout_constraintTop_toTopOf="@+id/image_poster"
+        tools:ignore="ContentDescription,UnusedAttribute" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

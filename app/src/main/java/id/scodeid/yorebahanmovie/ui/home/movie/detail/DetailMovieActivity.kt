@@ -2,9 +2,7 @@ package id.scodeid.yorebahanmovie.ui.home.movie.detail
 
 import android.annotation.SuppressLint
 import android.graphics.Paint
-import android.opengl.Visibility
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -19,7 +17,7 @@ import id.scodeid.yorebahanmovie.databinding.ActivityDetailMovieBinding
 import id.scodeid.yorebahanmovie.databinding.ContentDetailMovieBinding
 import id.scodeid.yorebahanmovie.entity.MovieEntity
 import id.scodeid.yorebahanmovie.utils.invisible
-import id.scodeid.yorebahanmovie.utils.showSnackbar
+import id.scodeid.yorebahanmovie.utils.showSnackBar
 import id.scodeid.yorebahanmovie.utils.visible
 
 class DetailMovieActivity : AppCompatActivity() {
@@ -73,16 +71,16 @@ class DetailMovieActivity : AppCompatActivity() {
             }
             it.cvUserScore.also { cus ->
                 cus.setOnClickListener {
-                    cus.showSnackbar(
+                    cus.showSnackBar(
                         getString(
                             R.string.detail_movie_activity_video_score,
-                            movieEntity.userScore
+                            movieEntity.videoScore
                         ), Snackbar.LENGTH_SHORT
                     )
                 }
             }
 
-            when (movieEntity.userScore.toInt()) {
+            when (movieEntity.videoScore.toInt()) {
                 in 70..80 -> it.cvUserScore.setCardBackgroundColor(resources.getColor(R.color.gold))
                 in 80..100 -> it.cvUserScore.setCardBackgroundColor(resources.getColor(R.color.rebahan_200))
                 else -> it.cvUserScore.setCardBackgroundColor(resources.getColor(R.color.black))
@@ -98,7 +96,7 @@ class DetailMovieActivity : AppCompatActivity() {
                     r.getString(R.string.item_movie_get_cuan_val, movieEntity.cuanValue)
                 it.btnRating.text =
                     r.getString(R.string.content_detail_movie_val_rating, movieEntity.rating)
-                it.tvDeadLine.text = r.getString(R.string.deadline_date, movieEntity.date)
+                it.tvDeadLine.text = r.getString(R.string.release_date, movieEntity.date)
 
                 it.btnRelease.text =
                     r.getString(R.string.content_detail_movie_val_status, movieEntity.status)
@@ -109,9 +107,9 @@ class DetailMovieActivity : AppCompatActivity() {
 
                 it.tvLang.text =
                     r.getString(R.string.content_detail_movie_val_lang, movieEntity.language)
-                it.tvUserScore.text = r.getString(
+                it.tvVideoScore.text = r.getString(
                     R.string.content_detail_movie_val_user_score_percent,
-                    movieEntity.userScore
+                    movieEntity.videoScore
                 )
             }
             it.tvTitle.paintFlags = Paint.UNDERLINE_TEXT_FLAG

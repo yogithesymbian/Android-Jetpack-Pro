@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:clipToPadding="false"
     android:descendantFocusability="blocksDescendants"
-    android:padding="16dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <androidx.cardview.widget.CardView
@@ -84,7 +83,7 @@
         tools:ignore="UnusedAttribute">
 
         <TextView
-            android:id="@+id/tv_user_score"
+            android:id="@+id/tv_video_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

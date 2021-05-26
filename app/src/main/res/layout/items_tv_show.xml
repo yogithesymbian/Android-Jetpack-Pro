@@ -9,41 +9,69 @@
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/item_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/img_poster"
-            android:layout_width="0dp"
-            android:layout_height="140dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:scaleType="fitXY"
-            android:src="@color/teal_200"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_poster_1"
+            android:layout_width="match_parent"
+            android:layout_height="175dp"
+            android:outlineSpotShadowColor="@color/white"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
+            tools:ignore="UnusedAttribute">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/poster_alita" />
+        </androidx.cardview.widget.CardView>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_poster"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_marginTop="32dp"
+            android:elevation="8dp"
+            android:outlineSpotShadowColor="@color/white"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/cv_poster_1"
+            app:layout_constraintEnd_toEndOf="@+id/cv_poster_1"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/cv_poster_1"
+            app:layout_constraintTop_toBottomOf="@+id/cv_poster_1"
+            tools:ignore="ContentDescription,UnusedAttribute"
+            tools:src="@drawable/poster_alita" />
 
         <TextView
             android:id="@+id/tv_item_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:ellipsize="end"
             android:gravity="start"
             android:maxLines="1"
+            android:textColor="@color/rebahan_600"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_poster"
-            tools:text="Story of Khalifah Umar Ibn Khatab R.A" />
+            app:layout_constraintBottom_toBottomOf="@+id/image_poster"
+            app:layout_constraintEnd_toEndOf="@+id/cv_poster_1"
+            app:layout_constraintStart_toEndOf="@+id/image_poster"
+            app:layout_constraintTop_toBottomOf="@+id/cv_poster_1"
+            app:layout_constraintVertical_bias="0.13999999"
+            tools:text="Story of Yogi Arif Widodo Fullstack Developer" />
 
         <TextView
             android:id="@+id/tv_genre"
@@ -70,65 +98,24 @@
             app:layout_constraintStart_toStartOf="@+id/tv_genre"
             app:layout_constraintTop_toBottomOf="@+id/tv_genre" />
 
-        <TextView
-            android:id="@+id/tv_item_desc"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:ellipsize="end"
-            android:gravity="start"
-            android:maxLines="3"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/tv_item_title"
-            app:layout_constraintStart_toStartOf="@+id/tv_item_title"
-            app:layout_constraintTop_toBottomOf="@+id/view_break"
-            tools:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci debitis, deserunt dolore, eos fugit hic illum ipsa itaque libero maiores non perferendis quas, quidem sequi. Beatae dicta quae quibusdam?" />
-
-        <TextView
-            android:id="@+id/tv_item_cuan"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:maxLines="1"
-            android:textAllCaps="false"
-            android:textSize="12sp"
-            android:textStyle="italic|bold"
-            app:layout_constraintStart_toStartOf="@+id/tv_item_desc"
-            app:layout_constraintTop_toBottomOf="@+id/tv_item_desc"
-            tools:text="nonton dapet cuan" />
-
-        <TextView
-            android:id="@+id/tv_item_cuan_gold"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="2dp"
-            android:maxLines="1"
-            android:textAllCaps="false"
-            android:textColor="@color/gold"
-            android:textSize="12sp"
-            android:textStyle="italic|bold"
-            app:layout_constraintEnd_toEndOf="@+id/tv_item_desc"
-            app:layout_constraintStart_toEndOf="@+id/tv_item_cuan"
-            app:layout_constraintTop_toBottomOf="@+id/tv_item_desc"
-            tools:text="$10" />
-
 
         <ImageButton
-            android:id="@+id/img_share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginBottom="1dp"
             android:background="@android:color/transparent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:elevation="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/image_poster"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_item_desc"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/image_poster"
+            app:layout_constraintTop_toTopOf="@+id/cv_poster_1"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/ic_share_blue"
-            tools:ignore="ContentDescription"
-            app:tint="@color/rebahan_200" />
+            app:tint="@color/rebahan_200"
+            tools:ignore="ContentDescription,UnusedAttribute" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

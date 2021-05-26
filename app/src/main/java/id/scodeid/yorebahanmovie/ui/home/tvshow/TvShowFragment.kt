@@ -13,14 +13,14 @@ import id.scodeid.yorebahanmovie.R
 import id.scodeid.yorebahanmovie.databinding.FragmentTvShowBinding
 import id.scodeid.yorebahanmovie.entity.TvShowEntity
 
-class TvShowFragment() : Fragment(), TvShowFragmentCallback {
+class TvShowFragment : Fragment(), TvShowFragmentCallback {
 
     // init binding view
     private lateinit var fragmentTvShowBinding: FragmentTvShowBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         fragmentTvShowBinding = FragmentTvShowBinding.inflate(inflater, container, false)
         return fragmentTvShowBinding.root

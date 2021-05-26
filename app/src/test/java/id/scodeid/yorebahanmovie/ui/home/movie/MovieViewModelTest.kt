@@ -9,14 +9,14 @@ class MovieViewModelTest {
     private lateinit var viewModel: MovieViewModel
 
     @Before
-    fun setUp(){
+    fun setUp() {
         viewModel = MovieViewModel()
     }
 
     @Test
-    fun getCourse() {
-        val courseEntities = viewModel.getMovies()
-        assertNotNull(courseEntities)
-        assertEquals(5, courseEntities.size)
+    fun getMovieData() {
+        val movieEntities = viewModel.getMovies()
+        assertNotNull(movieEntities)
+        assertEquals(10, movieEntities.size)
     }
 }

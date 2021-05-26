@@ -13,9 +13,9 @@ import com.google.android.material.snackbar.Snackbar
 import id.scodeid.yorebahanmovie.R
 import id.scodeid.yorebahanmovie.databinding.FragmentMovieBinding
 import id.scodeid.yorebahanmovie.entity.MovieEntity
-import id.scodeid.yorebahanmovie.utils.showSnackbar
+import id.scodeid.yorebahanmovie.utils.showSnackBar
 
-class MovieFragment() : Fragment(), MovieFragmentCallback {
+class MovieFragment : Fragment(), MovieFragmentCallback {
 
     // init binding view
     private lateinit var fragmentMovieBinding: FragmentMovieBinding
@@ -71,9 +71,9 @@ class MovieFragment() : Fragment(), MovieFragmentCallback {
     }
 
     override fun onVidScoreClick(movieEntity: MovieEntity, view: View) {
-        view.showSnackbar(resources.getString(
+        view.showSnackBar(resources.getString(
             R.string.detail_movie_activity_video_score,
-            movieEntity.userScore
+            movieEntity.videoScore
         ), Snackbar.LENGTH_SHORT)
     }
 

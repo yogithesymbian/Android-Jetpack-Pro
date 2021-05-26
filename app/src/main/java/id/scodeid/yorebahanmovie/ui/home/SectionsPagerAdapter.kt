@@ -10,7 +10,7 @@ import id.scodeid.yorebahanmovie.ui.home.movie.MovieFragment
 import id.scodeid.yorebahanmovie.ui.home.tvshow.TvShowFragment
 
 class SectionsPagerAdapter(
-    private val context: Context, fragmentManager: FragmentManager
+    private val context: Context, fragmentManager: FragmentManager,
 ) :
     FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
