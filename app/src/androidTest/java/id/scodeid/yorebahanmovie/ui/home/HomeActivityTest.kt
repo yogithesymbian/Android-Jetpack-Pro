@@ -76,10 +76,10 @@ class HomeActivityTest {
         onView(withId(R.id.tv_video_score)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_video_score)).check(matches(withText("${dummyMovie[1].videoScore}%")))
 
+        onView(isRoot()).perform(swipeUp())
+
         onView(withId(R.id.tv_desc)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_desc)).check(matches(withText(dummyMovie[1].description)))
-
-        onView(isRoot()).perform(swipeUp())
 
         onView(withId(R.id.tv_budget_value)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_budget_value)).check(matches(withText(dummyMovie[1].budget)))
