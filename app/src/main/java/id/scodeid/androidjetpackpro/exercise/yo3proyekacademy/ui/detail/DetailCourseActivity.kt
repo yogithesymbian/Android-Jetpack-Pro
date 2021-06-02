@@ -2,8 +2,6 @@ package id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.detail
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -14,9 +12,8 @@ import com.bumptech.glide.request.RequestOptions
 import id.scodeid.androidjetpackpro.R
 import id.scodeid.androidjetpackpro.databinding.ActivityDetailCourseBinding
 import id.scodeid.androidjetpackpro.databinding.ContentDetailCourseBinding
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.entity.CourseEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.CourseEntity
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.reader.CourseReaderActivity
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.DataDummy
 
 class DetailCourseActivity : AppCompatActivity() {
 

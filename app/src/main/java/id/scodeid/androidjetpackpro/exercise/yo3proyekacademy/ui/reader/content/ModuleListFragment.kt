@@ -10,11 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.scodeid.androidjetpackpro.databinding.FragmentModuleListBinding
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.entity.ModuleEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.ModuleEntity
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.reader.CourseReaderActivity
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.reader.CourseReaderCallback
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.reader.CourseReaderViewModel
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.DataDummy
 
 class ModuleListFragment : Fragment(), MyAdapterClickListener {
 

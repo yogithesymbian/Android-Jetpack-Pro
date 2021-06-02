@@ -1,6 +1,6 @@
 package id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.reader
 
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.entity.ContentEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.ContentEntity
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.DataDummy
 import org.junit.Before
 import org.junit.Test

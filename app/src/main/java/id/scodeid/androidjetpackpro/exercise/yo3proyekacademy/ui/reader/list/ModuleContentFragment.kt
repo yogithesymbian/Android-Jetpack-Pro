@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import id.scodeid.androidjetpackpro.databinding.FragmentModuleContentBinding
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.entity.ModuleEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.ModuleEntity
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.reader.CourseReaderViewModel
 
 class ModuleContentFragment : Fragment() {

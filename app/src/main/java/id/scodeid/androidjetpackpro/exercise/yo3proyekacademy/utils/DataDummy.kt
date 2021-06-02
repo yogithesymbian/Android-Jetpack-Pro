@@ -1,7 +1,7 @@
 package id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils
 
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.entity.CourseEntity
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.entity.ModuleEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.CourseEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.ModuleEntity
 
 object DataDummy {
     fun generateDummyCourses(): List<CourseEntity> {

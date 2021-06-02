@@ -3,13 +3,12 @@ package id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.bookmark
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import id.scodeid.androidjetpackpro.R
 import id.scodeid.androidjetpackpro.databinding.ItemsBookmarkBinding
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.entity.CourseEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.CourseEntity
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.detail.DetailCourseActivity
 
 class BookmarkAdapter(private val callback: BookmarkFragmentCallback) :

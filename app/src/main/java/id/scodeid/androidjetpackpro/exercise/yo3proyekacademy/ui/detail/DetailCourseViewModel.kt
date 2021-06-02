@@ -1,8 +1,8 @@
 package id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.detail
 
 import androidx.lifecycle.ViewModel
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.entity.CourseEntity
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.entity.ModuleEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.CourseEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.ModuleEntity
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.DataDummy
 
 class DetailCourseViewModel : ViewModel() {
