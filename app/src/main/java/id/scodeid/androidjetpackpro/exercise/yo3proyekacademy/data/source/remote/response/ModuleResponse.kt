@@ -3,12 +3,10 @@ package id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.remot
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
-
 @Parcelize
-data class CourseResponse(
-    var id: String,
+data class ModuleResponse(
+    var moduleId: String,
+    var courseId: String,
     var title: String,
-    var description: String,
-    var date: String,
-    var imagePath: String
-): Parcelable
+    var position: Int
+) : Parcelable

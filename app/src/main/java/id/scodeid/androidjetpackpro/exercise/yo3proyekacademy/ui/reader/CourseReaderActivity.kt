@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import id.scodeid.androidjetpackpro.R
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.reader.content.ModuleListFragment
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.reader.list.ModuleContentFragment
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.viewmodel.ViewModelFactory
 
 class CourseReaderActivity : AppCompatActivity(), CourseReaderCallback {
     companion object {
@@ -16,7 +17,8 @@ class CourseReaderActivity : AppCompatActivity(), CourseReaderCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_course_reader)
 
-        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[CourseReaderViewModel::class.java]
+        val viewModelFactory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this, viewModelFactory)[CourseReaderViewModel::class.java]
 
         val bundle = intent.extras
         if (bundle != null) {

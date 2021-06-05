@@ -12,8 +12,9 @@ import com.bumptech.glide.request.RequestOptions
 import id.scodeid.androidjetpackpro.R
 import id.scodeid.androidjetpackpro.databinding.ActivityDetailCourseBinding
 import id.scodeid.androidjetpackpro.databinding.ContentDetailCourseBinding
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.CourseEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.CourseEntity
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.reader.CourseReaderActivity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.viewmodel.ViewModelFactory
 
 class DetailCourseActivity : AppCompatActivity() {
 
@@ -33,7 +34,8 @@ class DetailCourseActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val adapter = DetailCourseAdapter()
-        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailCourseViewModel::class.java]
+        val viewModelFactory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this, viewModelFactory)[DetailCourseViewModel::class.java]
 
         val extras = intent.extras
         if (extras != null) {

@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import id.scodeid.androidjetpackpro.databinding.FragmentModuleContentBinding
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.ModuleEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.ModuleEntity
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.reader.CourseReaderViewModel
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.viewmodel.ViewModelFactory
 
 class ModuleContentFragment : Fragment() {
 
@@ -32,7 +33,8 @@ class ModuleContentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
-            val viewModel = ViewModelProvider(requireActivity(), ViewModelProvider.NewInstanceFactory())[CourseReaderViewModel::class.java]
+            val viewModelFactory = ViewModelFactory.getInstance(requireContext())
+            val viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[CourseReaderViewModel::class.java]
             val module = viewModel.getSelectedModule()
             populateWebView(module)
         }

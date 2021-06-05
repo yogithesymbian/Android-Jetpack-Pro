@@ -1,4 +1,4 @@
-package id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity
+package id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source
 
 data class ModuleEntity(
     var moduleId: String,

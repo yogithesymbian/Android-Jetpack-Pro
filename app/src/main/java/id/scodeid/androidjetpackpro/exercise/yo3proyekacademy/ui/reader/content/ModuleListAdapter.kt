@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import id.scodeid.androidjetpackpro.databinding.ItemsModuleListBinding
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.ModuleEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.ModuleEntity
 
 class ModuleListAdapter internal constructor(private val listener: MyAdapterClickListener) : RecyclerView.Adapter<ModuleListAdapter.ModuleViewHolder>(){
     private val listModuleEntities = ArrayList<ModuleEntity>()

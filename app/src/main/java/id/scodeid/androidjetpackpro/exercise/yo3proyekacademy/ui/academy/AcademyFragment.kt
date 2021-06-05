@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import id.scodeid.androidjetpackpro.R
 import id.scodeid.androidjetpackpro.databinding.FragmentAcademyBinding
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.DataDummy
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.viewmodel.ViewModelFactory
 
 class AcademyFragment : Fragment() {
 
@@ -31,7 +32,8 @@ class AcademyFragment : Fragment() {
         if (activity != null) {
 
             // load data
-            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[AcademyViewModel::class.java]
+            val viewModelFactory = ViewModelFactory.getInstance(requireContext())
+            val viewModel = ViewModelProvider(this, viewModelFactory)[AcademyViewModel::class.java]
             val courses = viewModel.getCourse()
 
             // adapter set

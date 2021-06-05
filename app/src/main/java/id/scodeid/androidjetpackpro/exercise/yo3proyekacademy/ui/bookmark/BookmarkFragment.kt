@@ -10,7 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.scodeid.androidjetpackpro.R
 import id.scodeid.androidjetpackpro.databinding.FragmentBookmarkBinding
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.CourseEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.CourseEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.viewmodel.ViewModelFactory
 
 class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
 
@@ -28,8 +29,10 @@ private lateinit var fragmentBookmarkBinding: FragmentBookmarkBinding
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null){
+
             // load data
-            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[BookmarkViewModel::class.java]
+            val viewModelFactory = ViewModelFactory.getInstance(requireContext())
+            val viewModel = ViewModelProvider(this, viewModelFactory)[BookmarkViewModel::class.java]
             val courses = viewModel.getBookmarks()
 
             val adapter = BookmarkAdapter(this)
