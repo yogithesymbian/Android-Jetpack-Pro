@@ -8,6 +8,7 @@ import id.scodeid.androidjetpackpro.databinding.ActivityMainBinding
 import id.scodeid.androidjetpackpro.exercise.yo1unittesting.MainMockitoActivity
 import id.scodeid.androidjetpackpro.exercise.yo2viewmodel.MainViewModelActivity
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.home.HomeActivity
+import id.scodeid.androidjetpackpro.exercise.yo5MyLiveData.MainMyLiveDataActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -20,16 +21,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(activityMainBinding.root)
 
         activityMainBinding.btnUnitTestingMockito.setOnClickListener(this)
-        activityMainBinding.btnInstrumentTest.setOnClickListener {
-            startActivity(Intent(this, MainViewModelActivity::class.java))
-        }
-        activityMainBinding.btnProject.setOnClickListener{
-            startActivity(Intent(this, HomeActivity::class.java))
+        activityMainBinding.also {
+            it.btnInstrumentTest.setOnClickListener {
+                startActivity(Intent(this, MainViewModelActivity::class.java))
+            }
+            it.btnProject.setOnClickListener {
+                startActivity(Intent(this, HomeActivity::class.java))
+            }
+            it.btnLiveData.setOnClickListener {
+                startActivity(Intent(this, MainMyLiveDataActivity::class.java))
+            }
         }
     }
 
     override fun onClick(v: View) {
-        when(v.id){
+        when (v.id) {
             R.id.btn_unit_testing_mockito -> {
                 startActivity(Intent(this, MainMockitoActivity::class.java))
             }

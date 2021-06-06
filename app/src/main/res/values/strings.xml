@@ -37,4 +37,7 @@
     <string name="message_ok">OK</string>
     <string name="deadline_date">Deadline %s</string>
     <string name="share_text">Segera daftar kelas %s di dicoding.com</string>
+    <string name="seconds">%d seconds elapsed</string>
+    <string name="hello_dicoding">Hello Dicoding!</string>
+
 </resources>
