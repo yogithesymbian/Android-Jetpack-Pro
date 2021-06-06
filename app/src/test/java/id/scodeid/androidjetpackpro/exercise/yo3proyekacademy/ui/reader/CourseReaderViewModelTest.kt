@@ -1,35 +1,34 @@
 package id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.reader
 
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.AcademyRepository
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.ContentEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.ModuleEntity
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.DataDummy
 import org.junit.Before
 import org.junit.Test
 
 import org.junit.Assert.*
+import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
+import org.mockito.junit.MockitoJUnitRunner
 
-/**
- * Memuat Modules:
- * Memastikan data module tidak null.
- * Memastikan jumlah data module sesuai dengan yang diharapkan.
- *
- * Memuat Module yang dipilih:
- * Memastikan data module tidak null.
- * Memastikan data content tidak null.
- * Memastikan value dari content tidak null.
- * Memastikan data content sesuai dengan yang diharapkan.
- */
+@RunWith(MockitoJUnitRunner::class)
 class CourseReaderViewModelTest {
 
     private lateinit var viewModel: CourseReaderViewModel
-
     private val dummyCourse = DataDummy.generateDummyCourses()[0]
     private val courseId = dummyCourse.courseId
     private val dummyModules = DataDummy.generateDummyModules(courseId)
     private val moduleId = dummyModules[0].moduleId
 
+    @Mock
+    private lateinit var academyRepository: AcademyRepository
+
     @Before
     fun setUp() {
-        viewModel = CourseReaderViewModel()
+        viewModel = CourseReaderViewModel(academyRepository)
         viewModel.setSelectedCourse(courseId)
         viewModel.setSelectedModule(moduleId)
 
@@ -39,14 +38,20 @@ class CourseReaderViewModelTest {
 
     @Test
     fun getModules() {
+        `when`(academyRepository.getAllModulesByCourse(courseId))
+            .thenReturn(dummyModules as ArrayList<ModuleEntity>?)
         val moduleEntities = viewModel.getModules()
+        verify(academyRepository).getAllModulesByCourse(courseId)
         assertNotNull(moduleEntities)
         assertEquals(7, moduleEntities.size.toLong())
     }
 
     @Test
     fun getSelectedModule() {
+        `when`(academyRepository.getContent(courseId, moduleId))
+            .thenReturn(dummyModules[0])
         val moduleEntity = viewModel.getSelectedModule()
+        verify(academyRepository).getContent(courseId, moduleId)
         assertNotNull(moduleEntity)
 
         val contentEntity = moduleEntity.contentEntity
