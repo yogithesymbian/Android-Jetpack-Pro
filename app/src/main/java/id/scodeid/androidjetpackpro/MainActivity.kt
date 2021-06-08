@@ -9,6 +9,7 @@ import id.scodeid.androidjetpackpro.exercise.yo1unittesting.MainMockitoActivity
 import id.scodeid.androidjetpackpro.exercise.yo2viewmodel.MainViewModelActivity
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.home.HomeActivity
 import id.scodeid.androidjetpackpro.exercise.yo5MyLiveData.MainMyLiveDataActivity
+import id.scodeid.androidjetpackpro.exercise.yo6MyLiveDataWithRetrofit.MainSixActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -30,6 +31,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             it.btnLiveData.setOnClickListener {
                 startActivity(Intent(this, MainMyLiveDataActivity::class.java))
+            }
+            it.btnLiveDataWRetro.setOnClickListener {
+                startActivity(Intent(this, MainSixActivity::class.java))
             }
         }
     }

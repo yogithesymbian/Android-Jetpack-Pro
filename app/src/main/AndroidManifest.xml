@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidJetpackPro"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".exercise.yo5MyLiveData.MainMyLiveDataActivity"></activity>
+        <activity android:name=".exercise.yo6MyLiveDataWithRetrofit.MainSixActivity"></activity>
+        <activity android:name=".exercise.yo5MyLiveData.MainMyLiveDataActivity" />
         <activity
             android:name=".exercise.yo3proyekacademy.ui.detail.DetailCourseActivity"
             android:label="@string/title_activity_detail_course"
