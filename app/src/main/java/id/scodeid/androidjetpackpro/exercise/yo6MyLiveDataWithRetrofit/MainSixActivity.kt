@@ -8,6 +8,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import id.scodeid.androidjetpackpro.R
 import id.scodeid.androidjetpackpro.databinding.ActivityMainSixBinding
 
@@ -51,6 +52,16 @@ class MainSixActivity : AppCompatActivity() {
                     val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                     imm.hideSoftInputFromWindow(it.windowToken, 0)
                 }
+
+                mvvm.snackbarText.observe(this, {
+                    it.getContentIfNotHandled()?.let { msg ->
+                        Snackbar.make(
+                            window.decorView.rootView,
+                            msg,
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+                })
 
             }
         }
