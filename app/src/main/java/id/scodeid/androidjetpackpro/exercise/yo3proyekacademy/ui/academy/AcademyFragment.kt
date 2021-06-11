@@ -34,11 +34,17 @@ class AcademyFragment : Fragment() {
             // load data
             val viewModelFactory = ViewModelFactory.getInstance(requireContext())
             val viewModel = ViewModelProvider(this, viewModelFactory)[AcademyViewModel::class.java]
-            val courses = viewModel.getCourse()
 
             // adapter set
             val academyAdapter = AcademyAdapter()
-            academyAdapter.setCourses(courses)
+
+            fragmentAcademyBinding.progressBar.visibility = View.VISIBLE
+            viewModel.getCourse().observe(viewLifecycleOwner, { course ->
+                fragmentAcademyBinding.progressBar.visibility = View.GONE
+                academyAdapter.setCourses(course)
+                academyAdapter.notifyDataSetChanged()
+            })
+
 
             // recyclerView
             with(fragmentAcademyBinding.rvAcademy) {

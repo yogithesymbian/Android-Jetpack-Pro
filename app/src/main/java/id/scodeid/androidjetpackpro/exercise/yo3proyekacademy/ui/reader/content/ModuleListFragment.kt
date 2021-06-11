@@ -29,11 +29,12 @@ class ModuleListFragment : Fragment(), MyAdapterClickListener {
     private lateinit var viewModel: CourseReaderViewModel
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        fragmentModuleListBinding = FragmentModuleListBinding.inflate(layoutInflater, container, false)
+        fragmentModuleListBinding =
+            FragmentModuleListBinding.inflate(layoutInflater, container, false)
         return fragmentModuleListBinding.root
     }
 
@@ -41,9 +42,17 @@ class ModuleListFragment : Fragment(), MyAdapterClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         val viewModelFactory = ViewModelFactory.getInstance(requireContext())
-        viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[CourseReaderViewModel::class.java]
+        viewModel = ViewModelProvider(
+            requireActivity(),
+            viewModelFactory
+        )[CourseReaderViewModel::class.java]
         adapter = ModuleListAdapter(this)
-        populateRecyclerView(viewModel.getModules())
+
+        fragmentModuleListBinding.progressBar.visibility = View.VISIBLE
+        viewModel.getModules().observe(viewLifecycleOwner, { modules ->
+            fragmentModuleListBinding.progressBar.visibility = View.GONE
+            populateRecyclerView(modules)
+        })
     }
 
     override fun onAttach(context: Context) {
@@ -63,7 +72,8 @@ class ModuleListFragment : Fragment(), MyAdapterClickListener {
             rvModule.layoutManager = LinearLayoutManager(context)
             rvModule.setHasFixedSize(true)
             rvModule.adapter = adapter
-            val dividerItemDecoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
+            val dividerItemDecoration =
+                DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
             rvModule.addItemDecoration(dividerItemDecoration)
         }
     }

@@ -2,6 +2,7 @@ package id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.detail
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -42,11 +43,21 @@ class DetailCourseActivity : AppCompatActivity() {
             val courseId = extras.getString(EXTRA_COURSE)
             if (courseId != null) {
 
-                viewModel.setSelectedCourse(courseId)
-                val modules = viewModel.getModules()
+                activityDetailCourseBinding.progressBar.visibility = View.VISIBLE
+                activityDetailCourseBinding.detailContent.root.visibility = View.INVISIBLE
 
-                adapter.setModules(modules)
-                populateCourse(viewModel.getCourse())
+                viewModel.setSelectedCourse(courseId)
+                viewModel.getModules().observe(this, { modules ->
+                    activityDetailCourseBinding.progressBar.visibility = View.GONE
+                    activityDetailCourseBinding.detailContent.root.visibility = View.VISIBLE
+
+                    adapter.setModules(modules)
+                    adapter.notifyDataSetChanged()
+                })
+
+                viewModel.getCourse().observe(this, { course ->
+                    populateCourse(course)
+                })
             }
         }
 
@@ -61,17 +72,19 @@ class DetailCourseActivity : AppCompatActivity() {
         }
     }
 
-    private fun populateCourse(courseEntity: CourseEntity){
+    private fun populateCourse(courseEntity: CourseEntity) {
         contentDetailCourseBinding.textTitle.text = courseEntity.title
         contentDetailCourseBinding.textDescription.text = courseEntity.description
-        contentDetailCourseBinding.textDate.text = resources.getString(R.string.deadline_date, courseEntity.deadline)
+        contentDetailCourseBinding.textDate.text =
+            resources.getString(R.string.deadline_date, courseEntity.deadline)
 
         Glide.with(this)
             .load(courseEntity.imagePath)
             .transform(RoundedCorners(20))
             .apply(
                 RequestOptions.placeholderOf(R.drawable.ic_loading)
-                .error(R.drawable.ic_error))
+                    .error(R.drawable.ic_error)
+            )
             .into(contentDetailCourseBinding.imagePoster)
 
         contentDetailCourseBinding.btnStart.setOnClickListener {

@@ -22,11 +22,12 @@ class ModuleContentFragment : Fragment() {
     private lateinit var fragmentModuleContentBinding: FragmentModuleContentBinding
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        fragmentModuleContentBinding = FragmentModuleContentBinding.inflate(inflater, container, false)
+        fragmentModuleContentBinding =
+            FragmentModuleContentBinding.inflate(inflater, container, false)
         return fragmentModuleContentBinding.root
     }
 
@@ -34,13 +35,26 @@ class ModuleContentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
             val viewModelFactory = ViewModelFactory.getInstance(requireContext())
-            val viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[CourseReaderViewModel::class.java]
-            val module = viewModel.getSelectedModule()
-            populateWebView(module)
+            val viewModel = ViewModelProvider(
+                requireActivity(),
+                viewModelFactory
+            )[CourseReaderViewModel::class.java]
+
+            fragmentModuleContentBinding.progressBar.visibility = View.VISIBLE
+            viewModel.getSelectedModule().observe(viewLifecycleOwner, { module ->
+                fragmentModuleContentBinding.progressBar.visibility = View.GONE
+                if (module != null) {
+                    populateWebView(module)
+                }
+            })
         }
     }
 
     private fun populateWebView(moduleEntity: ModuleEntity) {
-        fragmentModuleContentBinding.webView.loadData(moduleEntity.contentEntity?.content ?: "", "text/html", "UTF-8")
+        fragmentModuleContentBinding.webView.loadData(
+            moduleEntity.contentEntity?.content ?: "",
+            "text/html",
+            "UTF-8"
+        )
     }
 }

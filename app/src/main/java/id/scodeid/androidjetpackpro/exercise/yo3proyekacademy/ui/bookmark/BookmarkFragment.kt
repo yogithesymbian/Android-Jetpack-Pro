@@ -15,7 +15,7 @@ import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.viewmodel.ViewMode
 
 class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
 
-private lateinit var fragmentBookmarkBinding: FragmentBookmarkBinding
+    private lateinit var fragmentBookmarkBinding: FragmentBookmarkBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,17 +28,22 @@ private lateinit var fragmentBookmarkBinding: FragmentBookmarkBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (activity != null){
+        if (activity != null) {
 
             // load data
             val viewModelFactory = ViewModelFactory.getInstance(requireContext())
             val viewModel = ViewModelProvider(this, viewModelFactory)[BookmarkViewModel::class.java]
-            val courses = viewModel.getBookmarks()
 
             val adapter = BookmarkAdapter(this)
-            adapter.setCourses(courses)
 
-            with(fragmentBookmarkBinding.rvBookmark){
+            fragmentBookmarkBinding.progressBar.visibility = View.VISIBLE
+            viewModel.getBookmarks().observe(viewLifecycleOwner, { course ->
+                fragmentBookmarkBinding.progressBar.visibility = View.GONE
+                adapter.setCourses(course)
+                adapter.notifyDataSetChanged()
+            })
+
+            with(fragmentBookmarkBinding.rvBookmark) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 this.adapter = adapter
@@ -47,7 +52,7 @@ private lateinit var fragmentBookmarkBinding: FragmentBookmarkBinding
     }
 
     override fun onShareClick(courseEntity: CourseEntity) {
-        if (activity != null){
+        if (activity != null) {
             val mimeType = "text/plain"
             ShareCompat.IntentBuilder
                 .from(requireActivity())

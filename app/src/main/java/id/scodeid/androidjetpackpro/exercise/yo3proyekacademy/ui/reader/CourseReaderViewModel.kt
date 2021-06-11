@@ -1,5 +1,6 @@
 package id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.reader
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.AcademyRepository
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.ContentEntity
@@ -19,7 +20,7 @@ class CourseReaderViewModel(private val academyRepository: AcademyRepository) : 
         this.moduleId = moduleId
     }
 
-    fun getModules(): List<ModuleEntity> = academyRepository.getAllModulesByCourse(courseId)
+    fun getModules(): LiveData<List<ModuleEntity>> = academyRepository.getAllModulesByCourse(courseId)
 
-    fun getSelectedModule(): ModuleEntity = academyRepository.getContent(courseId, moduleId)
+    fun getSelectedModule(): LiveData<ModuleEntity> = academyRepository.getContent(courseId, moduleId)
 }
