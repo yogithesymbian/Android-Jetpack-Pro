@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -14,6 +15,8 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import id.scodeid.androidjetpackpro.MainActivity
 import id.scodeid.androidjetpackpro.R
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.DataDummy
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.EspressoIdlingResource
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
@@ -30,9 +33,15 @@ class HomeActivityTest {
 
     @Before
     fun setUp() {
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.getEspressoIdlingResourceForMainActivity())
         ActivityScenario.launch(MainActivity::class.java)
         onView(withId(R.id.btn_project))
             .perform(click())
+    }
+
+    @After
+    fun tearDown() {
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.getEspressoIdlingResourceForMainActivity())
     }
 
     @Test

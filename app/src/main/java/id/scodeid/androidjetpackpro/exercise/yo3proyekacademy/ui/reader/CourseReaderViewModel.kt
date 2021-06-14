@@ -6,6 +6,9 @@ import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.Academ
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.ContentEntity
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.ModuleEntity
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.DataDummy
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.EspressoIdlingResource
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.TESTING_FLAG
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.TESTING_FLAG_MATCH
 
 class CourseReaderViewModel(private val academyRepository: AcademyRepository) : ViewModel() {
 
@@ -20,7 +23,31 @@ class CourseReaderViewModel(private val academyRepository: AcademyRepository) : 
         this.moduleId = moduleId
     }
 
-    fun getModules(): LiveData<List<ModuleEntity>> = academyRepository.getAllModulesByCourse(courseId)
+    fun getModules(): LiveData<List<ModuleEntity>> {
 
-    fun getSelectedModule(): LiveData<ModuleEntity> = academyRepository.getContent(courseId, moduleId)
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            EspressoIdlingResource.increment()
+
+        val data = academyRepository.getAllModulesByCourse(courseId)
+
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow)
+                EspressoIdlingResource.decrement()
+
+        return data
+    }
+
+    fun getSelectedModule(): LiveData<ModuleEntity> {
+
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            EspressoIdlingResource.increment()
+
+        val data = academyRepository.getContent(courseId, moduleId)
+
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow)
+                EspressoIdlingResource.decrement()
+
+        return data
+    }
 }
