@@ -11,17 +11,5 @@ import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.TESTING_FLAG
 
 class BookmarkViewModel(private val academyRepository: AcademyRepository) : ViewModel() {
 
-    fun getBookmarks(): LiveData<List<CourseEntity>>{
-
-        if (TESTING_FLAG == TESTING_FLAG_MATCH)
-            EspressoIdlingResource.increment()
-
-        val data = academyRepository.getBookmarkedCourses()
-
-        if (TESTING_FLAG == TESTING_FLAG_MATCH)
-            if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow)
-                EspressoIdlingResource.decrement()
-
-        return data
-    }
+    fun getBookmarks(): LiveData<List<CourseEntity>> = academyRepository.getBookmarkedCourses()
 }

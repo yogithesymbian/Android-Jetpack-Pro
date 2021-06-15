@@ -23,31 +23,9 @@ class CourseReaderViewModel(private val academyRepository: AcademyRepository) : 
         this.moduleId = moduleId
     }
 
-    fun getModules(): LiveData<List<ModuleEntity>> {
+    fun getModules(): LiveData<List<ModuleEntity>> =
+        academyRepository.getAllModulesByCourse(courseId)
 
-        if (TESTING_FLAG == TESTING_FLAG_MATCH)
-            EspressoIdlingResource.increment()
-
-        val data = academyRepository.getAllModulesByCourse(courseId)
-
-        if (TESTING_FLAG == TESTING_FLAG_MATCH)
-            if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow)
-                EspressoIdlingResource.decrement()
-
-        return data
-    }
-
-    fun getSelectedModule(): LiveData<ModuleEntity> {
-
-        if (TESTING_FLAG == TESTING_FLAG_MATCH)
-            EspressoIdlingResource.increment()
-
-        val data = academyRepository.getContent(courseId, moduleId)
-
-        if (TESTING_FLAG == TESTING_FLAG_MATCH)
-            if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow)
-                EspressoIdlingResource.decrement()
-
-        return data
-    }
+    fun getSelectedModule(): LiveData<ModuleEntity> =
+        academyRepository.getContent(courseId, moduleId)
 }

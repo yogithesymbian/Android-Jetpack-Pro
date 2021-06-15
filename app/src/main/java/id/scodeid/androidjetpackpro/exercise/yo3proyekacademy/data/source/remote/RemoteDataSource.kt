@@ -5,18 +5,21 @@ import android.os.Looper
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.remote.response.ContentResponse
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.remote.response.CourseResponse
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.remote.response.ModuleResponse
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.EspressoIdlingResource
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.JsonHelper
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.TESTING_FLAG
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.TESTING_FLAG_MATCH
 
-class RemoteDataSource private constructor(private val jsonHelper: JsonHelper){
+class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
 
     private val handler = Handler(Looper.getMainLooper())
 
-    companion object{
+    companion object {
 
         private const val SERVICE_LATENCY_IN_MILLIS: Long = 2000
 
         @Volatile
-        private var instances: RemoteDataSource? =null
+        private var instances: RemoteDataSource? = null
 
         fun getInstance(helper: JsonHelper): RemoteDataSource =
             instances ?: synchronized(this) {
@@ -29,7 +32,18 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper){
 //    fun getAllCourses(): List<CourseResponse> = jsonHelper.loadCourses()
 
     fun getAllCourses(callback: LoadCoursesCallback) {
-        handler.postDelayed({ callback.onAllCoursesReceived(jsonHelper.loadCourses())}, SERVICE_LATENCY_IN_MILLIS)
+
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            EspressoIdlingResource.increment()
+
+        handler.postDelayed({
+            callback.onAllCoursesReceived(jsonHelper.loadCourses())
+
+            if (TESTING_FLAG == TESTING_FLAG_MATCH)
+                if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow)
+                    EspressoIdlingResource.decrement()
+
+        }, SERVICE_LATENCY_IN_MILLIS)
     }
 
     interface LoadCoursesCallback {
@@ -39,7 +53,18 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper){
 //    fun getModules(courseId: String): List<ModuleResponse> = jsonHelper.loadModule(courseId)
 
     fun getModules(courseId: String, callback: LoadModulesCallback) {
-        handler.postDelayed({callback.onAllModulesReceived(jsonHelper.loadModule(courseId))}, SERVICE_LATENCY_IN_MILLIS)
+
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            EspressoIdlingResource.increment()
+
+        handler.postDelayed({
+            callback.onAllModulesReceived(jsonHelper.loadModule(courseId))
+
+            if (TESTING_FLAG == TESTING_FLAG_MATCH)
+                if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow)
+                    EspressoIdlingResource.decrement()
+
+        }, SERVICE_LATENCY_IN_MILLIS)
     }
 
     interface LoadModulesCallback {
@@ -49,7 +74,18 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper){
 //    fun getContent(moduleId: String): ContentResponse = jsonHelper.loadContent(moduleId)
 
     fun getContent(moduleId: String, callback: LoadContentCallback) {
-        handler.postDelayed({ callback.onContentReceived(jsonHelper.loadContent(moduleId)) }, SERVICE_LATENCY_IN_MILLIS)
+
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            EspressoIdlingResource.increment()
+
+        handler.postDelayed({
+            callback.onContentReceived(jsonHelper.loadContent(moduleId))
+
+            if (TESTING_FLAG == TESTING_FLAG_MATCH)
+                if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow)
+                    EspressoIdlingResource.decrement()
+
+        }, SERVICE_LATENCY_IN_MILLIS)
     }
 
     interface LoadContentCallback {

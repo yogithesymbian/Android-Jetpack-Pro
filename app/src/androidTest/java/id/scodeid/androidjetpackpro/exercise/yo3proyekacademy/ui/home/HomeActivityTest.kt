@@ -33,8 +33,9 @@ class HomeActivityTest {
 
     @Before
     fun setUp() {
-        IdlingRegistry.getInstance().register(EspressoIdlingResource.getEspressoIdlingResourceForMainActivity())
         ActivityScenario.launch(MainActivity::class.java)
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.getEspressoIdlingResourceForMainActivity())
+
         onView(withId(R.id.btn_project))
             .perform(click())
     }
