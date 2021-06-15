@@ -20,8 +20,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- proyekacademy-->
-<!--    <string name="title">Title</string>-->
-<!--    <string name="description">Description</string>-->
+    <!--    <string name="title">Title</string>-->
+    <!--    <string name="description">Description</string>-->
     <string name="dateline">Dateline</string>
     <string name="description_course">Deskripsi Kelas</string>
     <string name="example">Example</string>
@@ -45,5 +45,10 @@
     <string name="review">Review</string>
     <string name="write_your_review_here">Write your review here..</string>
     <string name="send">Kirim</string>
+
+    <string name="start">Mulai</string>
+    <string name="delay1">Delay 1 Selesai</string>
+    <string name="delay2">Delay 2 Selesai</string>
+    <string name="prepare">Persiapan</string>
 
 </resources>
