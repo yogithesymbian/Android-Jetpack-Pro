@@ -1,8 +1,8 @@
 package id.scodeid.yorebahanmovie.utils
 
 import id.scodeid.yorebahanmovie.R
-import id.scodeid.yorebahanmovie.entity.MovieEntity
-import id.scodeid.yorebahanmovie.entity.TvShowEntity
+import id.scodeid.yorebahanmovie.data.source.local.entity.MovieEntity
+import id.scodeid.yorebahanmovie.data.source.local.entity.TvShowEntity
 
 object DataDummy {
     fun generateDummyMovies(): List<MovieEntity> {

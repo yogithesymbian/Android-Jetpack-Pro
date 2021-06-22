@@ -1,26 +1,37 @@
 package id.scodeid.yorebahanmovie.ui.home.tvshow.detail
 
+import id.scodeid.yorebahanmovie.data.source.YoMovieRepository
 import id.scodeid.yorebahanmovie.utils.DataDummy
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
+import org.mockito.junit.MockitoJUnitRunner
 
+@RunWith(MockitoJUnitRunner::class)
 class DetailTvShowActivityTest {
 
     private lateinit var viewModel: DetailTvShowViewModel
     private val dummyTvShow = DataDummy.generateDummyTvShow()[0]
     private val tvShowId = dummyTvShow.tvShowId
 
+    @Mock
+    private lateinit var yoMovieRepository: YoMovieRepository
+
     @Before
     fun setUp() {
-        viewModel = DetailTvShowViewModel()
+        viewModel = DetailTvShowViewModel(yoMovieRepository)
         viewModel.setSelectedTvShow(tvShowId) // set courseId
     }
 
     @Test
     fun getTvShowDetailData() {
-        viewModel.setSelectedTvShow(dummyTvShow.tvShowId)
+        `when`(yoMovieRepository.getTvShow(tvShowId)).thenReturn(dummyTvShow)
         val tvShowEntity = viewModel.getTvShowById()
+        verify(yoMovieRepository).getTvShow(tvShowId)
         assertNotNull(tvShowEntity)
         assertEquals(dummyTvShow.tvShowId, tvShowEntity.tvShowId)
         assertEquals(dummyTvShow.bookmarked, tvShowEntity.bookmarked)

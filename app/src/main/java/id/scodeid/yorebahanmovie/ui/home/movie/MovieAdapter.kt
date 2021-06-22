@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import id.scodeid.yorebahanmovie.R
 import id.scodeid.yorebahanmovie.databinding.ItemsMovieBinding
-import id.scodeid.yorebahanmovie.entity.MovieEntity
+import id.scodeid.yorebahanmovie.data.source.local.entity.MovieEntity
 import id.scodeid.yorebahanmovie.ui.home.movie.detail.DetailMovieActivity
 import id.scodeid.yorebahanmovie.utils.isEmpty
 

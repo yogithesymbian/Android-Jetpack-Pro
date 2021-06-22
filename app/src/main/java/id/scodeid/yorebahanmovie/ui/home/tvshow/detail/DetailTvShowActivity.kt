@@ -10,7 +10,8 @@ import com.bumptech.glide.request.RequestOptions
 import id.scodeid.yorebahanmovie.R
 import id.scodeid.yorebahanmovie.databinding.ActivityDetailTvShowBinding
 import id.scodeid.yorebahanmovie.databinding.ContentDetailTvShowBinding
-import id.scodeid.yorebahanmovie.entity.TvShowEntity
+import id.scodeid.yorebahanmovie.data.source.local.entity.TvShowEntity
+import id.scodeid.yorebahanmovie.viewmodel.ViewModelFactory
 
 class DetailTvShowActivity : AppCompatActivity() {
 
@@ -34,9 +35,10 @@ class DetailTvShowActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        val viewModelFactory = ViewModelFactory.getInstance(this)
         val viewModel = ViewModelProvider(
             this,
-            ViewModelProvider.NewInstanceFactory()
+            viewModelFactory
         )[DetailTvShowViewModel::class.java]
 
         val extras = intent.extras

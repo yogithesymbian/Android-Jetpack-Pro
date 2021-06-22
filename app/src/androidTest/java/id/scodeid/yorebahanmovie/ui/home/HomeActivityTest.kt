@@ -12,7 +12,6 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import id.scodeid.yorebahanmovie.R
-import id.scodeid.yorebahanmovie.utils.DataDummy
 import id.scodeid.yorebahanmovie.utils.EspressoIdlingResource
 import org.junit.After
 import org.junit.Before

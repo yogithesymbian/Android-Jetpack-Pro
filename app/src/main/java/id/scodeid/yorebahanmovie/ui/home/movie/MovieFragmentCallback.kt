@@ -1,7 +1,7 @@
 package id.scodeid.yorebahanmovie.ui.home.movie
 
 import android.view.View
-import id.scodeid.yorebahanmovie.entity.MovieEntity
+import id.scodeid.yorebahanmovie.data.source.local.entity.MovieEntity
 
 interface MovieFragmentCallback {
     fun onShareClick(movieEntity: MovieEntity)

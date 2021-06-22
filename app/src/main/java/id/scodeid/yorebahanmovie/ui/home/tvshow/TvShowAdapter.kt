@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import id.scodeid.yorebahanmovie.R
 import id.scodeid.yorebahanmovie.databinding.ItemsTvShowBinding
-import id.scodeid.yorebahanmovie.entity.TvShowEntity
+import id.scodeid.yorebahanmovie.data.source.local.entity.TvShowEntity
 import id.scodeid.yorebahanmovie.ui.home.tvshow.detail.DetailTvShowActivity
 import id.scodeid.yorebahanmovie.utils.isEmpty
 

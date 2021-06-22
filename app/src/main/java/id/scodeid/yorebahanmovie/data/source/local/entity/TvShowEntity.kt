@@ -1,4 +1,4 @@
-package id.scodeid.yorebahanmovie.entity
+package id.scodeid.yorebahanmovie.data.source.local.entity
 
 data class TvShowEntity(
         var tvShowId: String,

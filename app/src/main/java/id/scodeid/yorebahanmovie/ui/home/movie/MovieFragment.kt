@@ -13,8 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import id.scodeid.yorebahanmovie.R
 import id.scodeid.yorebahanmovie.databinding.FragmentMovieBinding
-import id.scodeid.yorebahanmovie.entity.MovieEntity
+import id.scodeid.yorebahanmovie.data.source.local.entity.MovieEntity
 import id.scodeid.yorebahanmovie.utils.*
+import id.scodeid.yorebahanmovie.viewmodel.ViewModelFactory
 import java.lang.Exception
 
 class MovieFragment : Fragment(), MovieFragmentCallback {
@@ -44,18 +45,19 @@ class MovieFragment : Fragment(), MovieFragmentCallback {
             )
 
             // init viewModel
+            val viewModelFactory = ViewModelFactory.getInstance(requireContext())
             val viewModel = ViewModelProvider(this,
-                ViewModelProvider.NewInstanceFactory())[MovieViewModel::class.java]
+                viewModelFactory)[MovieViewModel::class.java]
 
             // set adapter and load a manipulation data
-            val academyAdapter = MovieAdapter(this)
-            academyAdapter.setMovies(viewModel.getMovies(), this)
+            val movieAdapter = MovieAdapter(this)
+            movieAdapter.setMovies(viewModel.getMovies(), this)
 
             // config recyclerView for the data
             with(fragmentMovieBinding.rvMovie) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
-                adapter = academyAdapter
+                adapter = movieAdapter
             }
         }
     }

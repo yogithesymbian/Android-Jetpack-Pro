@@ -15,10 +15,11 @@ import com.google.android.material.snackbar.Snackbar
 import id.scodeid.yorebahanmovie.R
 import id.scodeid.yorebahanmovie.databinding.ActivityDetailMovieBinding
 import id.scodeid.yorebahanmovie.databinding.ContentDetailMovieBinding
-import id.scodeid.yorebahanmovie.entity.MovieEntity
+import id.scodeid.yorebahanmovie.data.source.local.entity.MovieEntity
 import id.scodeid.yorebahanmovie.utils.invisible
 import id.scodeid.yorebahanmovie.utils.showSnackBar
 import id.scodeid.yorebahanmovie.utils.visible
+import id.scodeid.yorebahanmovie.viewmodel.ViewModelFactory
 
 class DetailMovieActivity : AppCompatActivity() {
 
@@ -42,9 +43,10 @@ class DetailMovieActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        val viewModelFactory = ViewModelFactory.getInstance(this)
         val viewModel = ViewModelProvider(
             this,
-            ViewModelProvider.NewInstanceFactory()
+            viewModelFactory
         )[DetailMovieViewModel::class.java]
 
         val extras = intent.extras

@@ -111,25 +111,24 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_rating"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="60dp"
         android:layout_marginTop="16dp"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_release"
         app:layout_constraintEnd_toStartOf="@+id/image_poster"
         app:layout_constraintStart_toStartOf="@+id/tv_title"
         app:layout_constraintTop_toBottomOf="@+id/btn_play_yo_rebahan"
-        tools:text="Rating 12+" />
+        tools:text="Rating : R" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_release"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginTop="16dp"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/tv_title"
         app:layout_constraintStart_toEndOf="@+id/image_poster"
         app:layout_constraintTop_toBottomOf="@+id/btn_play_yo_rebahan"
-        tools:text="Status Belum Rilis" />
+        tools:text="Status Rilis" />
 
     <TextView
         android:id="@+id/tv_title"

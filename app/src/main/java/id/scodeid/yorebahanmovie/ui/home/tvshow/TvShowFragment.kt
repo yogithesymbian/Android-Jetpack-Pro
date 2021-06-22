@@ -12,10 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.scodeid.yorebahanmovie.R
 import id.scodeid.yorebahanmovie.databinding.FragmentTvShowBinding
-import id.scodeid.yorebahanmovie.entity.TvShowEntity
+import id.scodeid.yorebahanmovie.data.source.local.entity.TvShowEntity
 import id.scodeid.yorebahanmovie.utils.dataFailOnLoad
 import id.scodeid.yorebahanmovie.utils.gone
 import id.scodeid.yorebahanmovie.utils.visible
+import id.scodeid.yorebahanmovie.viewmodel.ViewModelFactory
 import java.lang.Exception
 
 class TvShowFragment : Fragment(), TvShowFragmentCallback {
@@ -45,9 +46,10 @@ class TvShowFragment : Fragment(), TvShowFragmentCallback {
             )
 
             // init viewModel
+            val viewModelFactory = ViewModelFactory.getInstance(requireContext())
             val viewModel = ViewModelProvider(
                 this,
-                ViewModelProvider.NewInstanceFactory()
+                viewModelFactory
             )[TvShowViewModel::class.java]
 
             // set adapter and load a manipulation data

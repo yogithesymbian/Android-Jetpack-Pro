@@ -1,4 +1,4 @@
-package id.scodeid.yorebahanmovie.entity
+package id.scodeid.yorebahanmovie.data.source.local.entity
 
 data class MovieEntity(
     var movieId: String,

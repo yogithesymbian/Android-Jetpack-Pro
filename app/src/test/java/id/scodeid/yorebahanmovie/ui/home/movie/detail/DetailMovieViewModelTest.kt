@@ -1,27 +1,37 @@
 package id.scodeid.yorebahanmovie.ui.home.movie.detail
 
+import id.scodeid.yorebahanmovie.data.source.YoMovieRepository
 import id.scodeid.yorebahanmovie.utils.DataDummy
 import org.junit.Before
 import org.junit.Test
-
 import org.junit.Assert.*
+import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
+import org.mockito.junit.MockitoJUnitRunner
 
+@RunWith(MockitoJUnitRunner::class)
 class DetailMovieViewModelTest {
 
     private lateinit var viewModel: DetailMovieViewModel
     private val dummyMovies = DataDummy.generateDummyMovies()[0]
     private val movieId = dummyMovies.movieId
 
+    @Mock
+    private lateinit var yoMovieRepository: YoMovieRepository
+
     @Before
     fun setUp() {
-        viewModel = DetailMovieViewModel()
+        viewModel = DetailMovieViewModel(yoMovieRepository)
         viewModel.setSelectedMovie(movieId) // set courseId
     }
 
     @Test
     fun getMovieDetailData() {
-        viewModel.setSelectedMovie(dummyMovies.movieId)
+        `when`(yoMovieRepository.getMovie(movieId)).thenReturn(dummyMovies)
         val movieEntity = viewModel.getMovieById()
+        verify(yoMovieRepository).getMovie(movieId)
         assertNotNull(movieEntity)
         assertEquals(dummyMovies.movieId, movieEntity.movieId)
         assertEquals(dummyMovies.bookmarked, movieEntity.bookmarked)
