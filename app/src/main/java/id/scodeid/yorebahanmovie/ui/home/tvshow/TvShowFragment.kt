@@ -1,7 +1,7 @@
 package id.scodeid.yorebahanmovie.ui.home.tvshow
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,11 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import id.scodeid.yorebahanmovie.R
 import id.scodeid.yorebahanmovie.databinding.FragmentTvShowBinding
 import id.scodeid.yorebahanmovie.data.source.local.entity.TvShowEntity
-import id.scodeid.yorebahanmovie.utils.dataFailOnLoad
-import id.scodeid.yorebahanmovie.utils.gone
-import id.scodeid.yorebahanmovie.utils.visible
+import id.scodeid.yorebahanmovie.ui.home.tvshow.detail.DetailTvShowActivity
+import id.scodeid.yorebahanmovie.utils.*
 import id.scodeid.yorebahanmovie.viewmodel.ViewModelFactory
-import java.lang.Exception
 
 class TvShowFragment : Fragment(), TvShowFragmentCallback {
 
@@ -98,7 +96,7 @@ class TvShowFragment : Fragment(), TvShowFragmentCallback {
             ShareCompat.IntentBuilder
                 .from(requireActivity())
                 .setType(mimeType)
-                .setChooserTitle("Bagikan aplikasi ini sekarang")
+                .setChooserTitle(getString(R.string.share_title_chooser))
                 .setText(resources.getString(R.string.share_text,
                     tvShowEntity.title,
                     tvShowEntity.cuanValue))
@@ -110,13 +108,17 @@ class TvShowFragment : Fragment(), TvShowFragmentCallback {
         fragmentTvShowBinding.let {
             if (dataFailOnLoad == getString(R.string.testDataFailOnLoad)) {
                 it.rvTvShow.gone()
+                it.emptyContent.root.gone()
                 it.failedLoadContent.root.visible()
             }
         }
     }
 
-    companion object {
-        val TAG_LOG: String = TvShowFragment::class.java.simpleName
+    override fun onClickDetailEvent(id: String) {
+        val intent = Intent(requireContext(), DetailTvShowActivity::class.java)
+        intent.putExtra(DetailTvShowActivity.EXTRA_DETAIL_DATA_TV,
+            id)
+        requireActivity().startActivity(intent)
     }
 
 }

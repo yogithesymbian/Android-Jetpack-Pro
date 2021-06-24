@@ -1,17 +1,17 @@
 package id.scodeid.yorebahanmovie.data.source
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.doAnswer
+import com.nhaarman.mockitokotlin2.verify
 import id.scodeid.yorebahanmovie.data.source.remote.RemoteDataSource
 import id.scodeid.yorebahanmovie.utils.DataDummy
 import id.scodeid.yorebahanmovie.utils.LiveDataTestUtil
-import org.junit.Test
-import com.nhaarman.mockitokotlin2.any
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.eq
-import com.nhaarman.mockitokotlin2.doAnswer
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Rule
-import org.mockito.Mockito.*
+import org.junit.Test
+import org.mockito.Mockito.mock
 
 class YoMovieRepositoryTest {
 
@@ -69,7 +69,7 @@ class YoMovieRepositoryTest {
     }
 
     @Test
-    fun getTvShow() {
+        fun getTvShow() {
         doAnswer { invocation ->
             (invocation.arguments[0] as RemoteDataSource.LoadTvShowCallback)
                 .onAllTvShowReceived(responsesTvShow)

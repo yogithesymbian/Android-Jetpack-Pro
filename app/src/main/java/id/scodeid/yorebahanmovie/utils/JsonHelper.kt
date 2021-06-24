@@ -2,8 +2,7 @@ package id.scodeid.yorebahanmovie.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
-import id.scodeid.yorebahanmovie.data.source.remote.response.MovieResponse
-import id.scodeid.yorebahanmovie.data.source.remote.response.TvShowResponse
+import id.scodeid.yorebahanmovie.data.source.remote.response.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
@@ -38,7 +37,8 @@ class JsonHelper(private val context: Context) {
 
                 val imgFullStr = listArr.getString("imgPath")
                 val imgName = imgFullStr.split(".").toTypedArray()[2]
-                val imgPathId = context.resources.getIdentifier(imgName, "drawable", context.packageName)
+                val imgPathId =
+                    context.resources.getIdentifier(imgName, "drawable", context.packageName)
 
                 val title = listArr.getString("title")
                 val rating = listArr.getString("rating")
@@ -88,7 +88,8 @@ class JsonHelper(private val context: Context) {
 
                 val imgFullStr = listArr.getString("imgPath")
                 val imgName = imgFullStr.split(".").toTypedArray()[2]
-                val imgPathId = context.resources.getIdentifier(imgName, "drawable", context.packageName)
+                val imgPathId =
+                    context.resources.getIdentifier(imgName, "drawable", context.packageName)
 
                 val title = listArr.getString("title")
                 val rating = listArr.getString("rating")

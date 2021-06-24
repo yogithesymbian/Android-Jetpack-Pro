@@ -1,7 +1,6 @@
 package id.scodeid.yorebahanmovie.ui.home.movie
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,9 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import id.scodeid.yorebahanmovie.R
-import id.scodeid.yorebahanmovie.databinding.ItemsMovieBinding
 import id.scodeid.yorebahanmovie.data.source.local.entity.MovieEntity
-import id.scodeid.yorebahanmovie.ui.home.movie.detail.DetailMovieActivity
+import id.scodeid.yorebahanmovie.databinding.ItemsMovieBinding
 import id.scodeid.yorebahanmovie.utils.isEmpty
 
 class MovieAdapter(private val callback: MovieFragmentCallback) :
@@ -47,12 +45,7 @@ class MovieAdapter(private val callback: MovieFragmentCallback) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(arrListMovieEntities[position])
 
-    override fun getItemCount(): Int {
-        arrListMovieEntities.size.let {
-            callback.onCheckDataSize(it)
-            return arrListMovieEntities.size
-        }
-    }
+    override fun getItemCount(): Int = arrListMovieEntities.size
 
     inner class ViewHolder(private val binding: ItemsMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -77,9 +70,7 @@ class MovieAdapter(private val callback: MovieFragmentCallback) :
                 .into(imgPoster)
 
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, DetailMovieActivity::class.java)
-                intent.putExtra(DetailMovieActivity.EXTRA_DETAIL_DATA, movieEntity.movieId)
-                itemView.context.startActivity(intent)
+                callback.onClickDetailEvent(movieEntity.movieId)
             }
             imgShare.setOnClickListener {
                 callback.onShareClick(movieEntity)

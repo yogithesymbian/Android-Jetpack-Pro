@@ -1,6 +1,5 @@
 package id.scodeid.yorebahanmovie.ui.home.tvshow
 
-import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,9 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import id.scodeid.yorebahanmovie.R
-import id.scodeid.yorebahanmovie.databinding.ItemsTvShowBinding
 import id.scodeid.yorebahanmovie.data.source.local.entity.TvShowEntity
-import id.scodeid.yorebahanmovie.ui.home.tvshow.detail.DetailTvShowActivity
+import id.scodeid.yorebahanmovie.databinding.ItemsTvShowBinding
 import id.scodeid.yorebahanmovie.utils.isEmpty
 
 class TvShowAdapter(private val callback: TvShowFragmentCallback) :
@@ -72,10 +70,7 @@ class TvShowAdapter(private val callback: TvShowFragmentCallback) :
                 .into(imgBackdrop)
 
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, DetailTvShowActivity::class.java)
-                intent.putExtra(DetailTvShowActivity.EXTRA_DETAIL_DATA_TV,
-                    tvShowEntity.tvShowId)
-                itemView.context.startActivity(intent)
+                callback.onClickDetailEvent(tvShowEntity.tvShowId)
             }
 
             imgShare.setOnClickListener {

@@ -1,6 +1,5 @@
 package id.scodeid.yorebahanmovie.data.source
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import id.scodeid.yorebahanmovie.data.source.local.entity.MovieEntity

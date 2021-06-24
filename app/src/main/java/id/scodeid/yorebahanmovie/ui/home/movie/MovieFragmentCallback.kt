@@ -6,5 +6,5 @@ import id.scodeid.yorebahanmovie.data.source.local.entity.MovieEntity
 interface MovieFragmentCallback {
     fun onShareClick(movieEntity: MovieEntity)
     fun onVidScoreClick(movieEntity: MovieEntity, view: View)
-    fun onCheckDataSize(size: Int?)
+    fun onClickDetailEvent(id: String)
 }

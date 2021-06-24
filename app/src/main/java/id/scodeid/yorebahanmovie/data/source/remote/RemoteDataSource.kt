@@ -50,7 +50,7 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         fun onAllTvShowReceived(responses: List<TvShowResponse>)
     }
 
-    fun getAllTvShow(callback: LoadTvShowCallback){
+    fun getAllTvShow(callback: LoadTvShowCallback) {
 
         if (TESTING_FLAG == TESTING_FLAG_MATCH)
             EspressoIdlingResource.increment()

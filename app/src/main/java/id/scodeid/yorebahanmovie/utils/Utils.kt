@@ -1,5 +1,3 @@
-@file:Suppress("unused")
-
 package id.scodeid.yorebahanmovie.utils
 
 import android.view.View

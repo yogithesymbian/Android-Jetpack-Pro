@@ -9,25 +9,13 @@ import id.scodeid.yorebahanmovie.data.source.remote.response.MovieResponse
 import id.scodeid.yorebahanmovie.data.source.remote.response.TvShowResponse
 
 
-class FakeYoMovieRepository (private val remoteDataSource: RemoteDataSource) :
-    YoMovieDataSource {
-    companion object {
-        @Volatile
-        private var instance: FakeYoMovieRepository? = null
-
-        fun getInstance(remoteDataSource: RemoteDataSource): FakeYoMovieRepository =
-            instance ?: synchronized(this) {
-                instance ?: FakeYoMovieRepository(remoteDataSource).apply {
-                    instance = this
-                }
-            }
-    }
+class FakeYoMovieRepository(private val remoteDataSource: RemoteDataSource) : YoMovieDataSource {
 
     override fun getAllMovies(): LiveData<List<MovieEntity>> {
 
         val mutableLiveData = MutableLiveData<List<MovieEntity>>()
 
-        remoteDataSource.getAllMovies(object : RemoteDataSource.LoadMoviesCallback{
+        remoteDataSource.getAllMovies(object : RemoteDataSource.LoadMoviesCallback {
             override fun onAllMoviesReceived(responses: List<MovieResponse>) {
 
                 val arrListMovie = ArrayList<MovieEntity>()
@@ -114,11 +102,12 @@ class FakeYoMovieRepository (private val remoteDataSource: RemoteDataSource) :
 
         return mutableLiveData
     }
+
     override fun getTvShow(tvShowId: String): LiveData<TvShowEntity> {
 
         val mutableLiveData = MutableLiveData<TvShowEntity>()
 
-        remoteDataSource.getAllTvShow(object : RemoteDataSource.LoadTvShowCallback{
+        remoteDataSource.getAllTvShow(object : RemoteDataSource.LoadTvShowCallback {
             override fun onAllTvShowReceived(responses: List<TvShowResponse>) {
 
                 lateinit var tvShowEntity: TvShowEntity

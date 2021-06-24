@@ -1,10 +1,8 @@
 package id.scodeid.yorebahanmovie.utils
 
 import id.scodeid.yorebahanmovie.R
-import id.scodeid.yorebahanmovie.data.source.local.entity.MovieEntity
-import id.scodeid.yorebahanmovie.data.source.local.entity.TvShowEntity
-import id.scodeid.yorebahanmovie.data.source.remote.response.MovieResponse
-import id.scodeid.yorebahanmovie.data.source.remote.response.TvShowResponse
+import id.scodeid.yorebahanmovie.data.source.local.entity.*
+import id.scodeid.yorebahanmovie.data.source.remote.response.*
 
 object DataDummy {
     fun generateDummyMovies(): List<MovieEntity> {
@@ -428,6 +426,7 @@ object DataDummy {
 
         return arrListTvShow
     }
+
     fun generateRemoteDummyMovies(): List<MovieResponse> {
         val arrListMovie = ArrayList<MovieResponse>()
         arrListMovie.add(

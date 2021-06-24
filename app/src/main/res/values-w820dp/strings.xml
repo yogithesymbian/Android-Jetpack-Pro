@@ -14,4 +14,5 @@
     <string name="content_failed_load_something_has_wrong">Something has wrong!</string>
     <string name="testDataFailOnLoad">testDataFailOnLoad</string>
     <string name="testEmpty">testEmpty</string>
+    <string name="share_title_chooser">Bagikan aplikasi ini sekarang</string>
 </resources>

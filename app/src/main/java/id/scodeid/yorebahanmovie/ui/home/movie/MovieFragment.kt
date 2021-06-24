@@ -1,20 +1,24 @@
 package id.scodeid.yorebahanmovie.ui.home.movie
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ShareCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import id.scodeid.yorebahanmovie.R
-import id.scodeid.yorebahanmovie.databinding.FragmentMovieBinding
 import id.scodeid.yorebahanmovie.data.source.local.entity.MovieEntity
-import id.scodeid.yorebahanmovie.utils.*
+import id.scodeid.yorebahanmovie.databinding.FragmentMovieBinding
+import id.scodeid.yorebahanmovie.ui.home.movie.detail.DetailMovieActivity
+import id.scodeid.yorebahanmovie.utils.dataFailOnLoad
+import id.scodeid.yorebahanmovie.utils.gone
+import id.scodeid.yorebahanmovie.utils.showSnackBar
+import id.scodeid.yorebahanmovie.utils.visible
 import id.scodeid.yorebahanmovie.viewmodel.ViewModelFactory
 
 class MovieFragment : Fragment(), MovieFragmentCallback {
@@ -53,11 +57,16 @@ class MovieFragment : Fragment(), MovieFragmentCallback {
             fragmentMovieBinding.progressBar.visible()
 
             viewModel.getMovies().observe(viewLifecycleOwner, { movie ->
-                fragmentMovieBinding.progressBar.gone()
-                movieAdapter.setMovies(movie, this)
-                movieAdapter.notifyDataSetChanged()
-                if (movieAdapter.itemCount == 0) hideRv()
-                else showRv()
+                fragmentMovieBinding.let {
+                    it.progressBar.gone()
+                    movieAdapter.setMovies(movie, this)
+                    movieAdapter.notifyDataSetChanged()
+                    if (movieAdapter.itemCount == 0) hideRv()
+                    else showRv()
+                    if (dataFailOnLoad == getString(R.string.testDataFailOnLoad))
+                        showFail()
+                }
+
             })
 
             // config recyclerView for the data
@@ -70,10 +79,19 @@ class MovieFragment : Fragment(), MovieFragmentCallback {
         }
     }
 
+    private fun showFail() {
+        fragmentMovieBinding.let {
+            it.rvMovie.gone()
+            it.emptyContent.root.gone()
+            it.failedLoadContent.root.visible()
+        }
+    }
+
     private fun showRv() {
         fragmentMovieBinding.let {
             it.rvMovie.visible()
             it.emptyContent.root.gone()
+            it.failedLoadContent.root.gone()
         }
     }
 
@@ -81,6 +99,7 @@ class MovieFragment : Fragment(), MovieFragmentCallback {
         fragmentMovieBinding.let {
             it.rvMovie.gone()
             it.emptyContent.root.visible()
+            it.failedLoadContent.root.gone()
         }
     }
 
@@ -90,7 +109,7 @@ class MovieFragment : Fragment(), MovieFragmentCallback {
             ShareCompat.IntentBuilder
                 .from(requireActivity())
                 .setType(mimeType)
-                .setChooserTitle("Bagikan aplikasi ini sekarang")
+                .setChooserTitle(getString(R.string.share_title_chooser))
                 .setText(resources.getString(R.string.share_text,
                     movieEntity.title,
                     movieEntity.cuanValue))
@@ -105,17 +124,9 @@ class MovieFragment : Fragment(), MovieFragmentCallback {
         ), Snackbar.LENGTH_SHORT)
     }
 
-    override fun onCheckDataSize(size: Int?) {
-        fragmentMovieBinding.let {
-            if (dataFailOnLoad == getString(R.string.testDataFailOnLoad)) {
-                it.rvMovie.gone()
-                it.failedLoadContent.root.visible()
-            }
-        }
+    override fun onClickDetailEvent(id: String) {
+        val intent = Intent(requireContext(), DetailMovieActivity::class.java)
+        intent.putExtra(DetailMovieActivity.EXTRA_DETAIL_DATA, id)
+        requireActivity().startActivity(intent)
     }
-
-    companion object {
-        val TAG_LOG: String = MovieFragment::class.java.simpleName
-    }
-
 }
