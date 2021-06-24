@@ -10,9 +10,10 @@ import id.scodeid.androidjetpackpro.exercise.yo2viewmodel.MainViewModelActivity
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.home.HomeActivity
 import id.scodeid.androidjetpackpro.exercise.yo5MyLiveData.MainMyLiveDataActivity
 import id.scodeid.androidjetpackpro.exercise.yo6MyLiveDataWithRetrofit.MainSixActivity
+import id.scodeid.androidjetpackpro.exercise.yo9RoomDatabases.ui.main.MainNoteActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-
+//    /Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
     private lateinit var activityMainBinding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +35,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             it.btnLiveDataWRetro.setOnClickListener {
                 startActivity(Intent(this, MainSixActivity::class.java))
+            }
+            it.btnRoomDb.setOnClickListener {
+                startActivity(Intent(this, MainNoteActivity::class.java))
             }
         }
     }

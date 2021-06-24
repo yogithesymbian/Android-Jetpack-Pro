@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidJetpackPro"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".exercise.yo8MyIdlingResource.MyIdlingResourceActivity"></activity>
+        <activity android:name=".exercise.yo9RoomDatabases.ui.insert.NoteAddUpdateActivity"></activity>
+        <activity android:name=".exercise.yo9RoomDatabases.ui.main.MainNoteActivity" />
+        <activity android:name=".exercise.yo8MyIdlingResource.MyIdlingResourceActivity" />
         <activity android:name=".exercise.yo6MyLiveDataWithRetrofit.MainSixActivity" />
         <activity android:name=".exercise.yo5MyLiveData.MainMyLiveDataActivity" />
         <activity
