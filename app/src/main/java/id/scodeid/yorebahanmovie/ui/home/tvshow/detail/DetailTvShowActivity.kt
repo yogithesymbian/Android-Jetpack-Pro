@@ -11,6 +11,8 @@ import id.scodeid.yorebahanmovie.R
 import id.scodeid.yorebahanmovie.databinding.ActivityDetailTvShowBinding
 import id.scodeid.yorebahanmovie.databinding.ContentDetailTvShowBinding
 import id.scodeid.yorebahanmovie.data.source.local.entity.TvShowEntity
+import id.scodeid.yorebahanmovie.utils.gone
+import id.scodeid.yorebahanmovie.utils.visible
 import id.scodeid.yorebahanmovie.viewmodel.ViewModelFactory
 
 class DetailTvShowActivity : AppCompatActivity() {
@@ -45,8 +47,13 @@ class DetailTvShowActivity : AppCompatActivity() {
         if (extras != null) { // check intent data
             val tvShowId = extras.getString(EXTRA_DETAIL_DATA_TV)
             if (tvShowId != null) {
+
+                activityDetailTvShowBinding.progressBar.visible()
                 viewModel.setSelectedTvShow(tvShowId)
-                populateCourse(viewModel.getTvShowById())
+                viewModel.getTvShowById().observe(this, { tvshow ->
+                    populateCourse(tvshow)
+                    activityDetailTvShowBinding.progressBar.gone()
+                })
             }
         }
 

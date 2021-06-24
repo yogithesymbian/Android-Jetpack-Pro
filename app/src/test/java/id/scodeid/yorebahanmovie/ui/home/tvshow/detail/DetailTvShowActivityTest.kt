@@ -1,9 +1,14 @@
 package id.scodeid.yorebahanmovie.ui.home.tvshow.detail
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import id.scodeid.yorebahanmovie.data.source.YoMovieRepository
+import id.scodeid.yorebahanmovie.data.source.local.entity.TvShowEntity
 import id.scodeid.yorebahanmovie.utils.DataDummy
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
@@ -18,6 +23,12 @@ class DetailTvShowActivityTest {
     private val dummyTvShow = DataDummy.generateDummyTvShow()[0]
     private val tvShowId = dummyTvShow.tvShowId
 
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
+
+    @Mock
+    private lateinit var observer: Observer<TvShowEntity>
+
     @Mock
     private lateinit var yoMovieRepository: YoMovieRepository
 
@@ -29,8 +40,13 @@ class DetailTvShowActivityTest {
 
     @Test
     fun getTvShowDetailData() {
-        `when`(yoMovieRepository.getTvShow(tvShowId)).thenReturn(dummyTvShow)
-        val tvShowEntity = viewModel.getTvShowById()
+        val mutableLiveData = MutableLiveData<TvShowEntity>()
+        mutableLiveData.value = dummyTvShow
+
+        `when`(yoMovieRepository.getTvShow(tvShowId))
+            .thenReturn(mutableLiveData)
+
+        val tvShowEntity = viewModel.getTvShowById().value as TvShowEntity
         verify(yoMovieRepository).getTvShow(tvShowId)
         assertNotNull(tvShowEntity)
         assertEquals(dummyTvShow.tvShowId, tvShowEntity.tvShowId)
@@ -49,5 +65,8 @@ class DetailTvShowActivityTest {
         assertEquals(dummyTvShow.language, tvShowEntity.language)
         assertEquals(dummyTvShow.type, tvShowEntity.type)
         assertEquals(dummyTvShow.adult, tvShowEntity.adult)
+
+        viewModel.getTvShowById().observeForever(observer)
+        verify(observer).onChanged(dummyTvShow)
     }
 }

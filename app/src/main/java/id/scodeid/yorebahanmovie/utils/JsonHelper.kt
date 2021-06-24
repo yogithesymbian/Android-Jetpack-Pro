@@ -56,22 +56,14 @@ class JsonHelper(private val context: Context) {
                 val adult = listArr.getBoolean("adult")
 
                 val movieResponse = MovieResponse(
-                    movieId,
-                    bookmarked,
-                    imgPathId,
-                    title,
-                    rating,
-                    date,
-                    genre,
-                    videoTime,
-                    description,
-                    cuanValue,
-                    videoScore,
-                    status,
-                    director,
-                    language,
-                    budget,
-                    income,
+                    movieId, bookmarked,
+                    imgPathId, title,
+                    rating, date,
+                    genre, videoTime,
+                    description, cuanValue,
+                    videoScore, status,
+                    director, language,
+                    budget, income,
                     adult
                 )
                 list.add(movieResponse)
@@ -113,22 +105,14 @@ class JsonHelper(private val context: Context) {
                 val adult = listArr.getBoolean("adult")
 
                 val tvShowResponse = TvShowResponse(
-                    tvShowId,
-                    bookmarked,
-                    imgPathId,
-                    title,
-                    rating,
-                    date,
-                    genre,
-                    videoTime,
-                    description,
-                    cuanValue,
-                    videoScore,
-                    status,
-                    creator,
-                    language,
-                    type,
-                    adult,
+                    tvShowId, bookmarked,
+                    imgPathId, title,
+                    rating, date,
+                    genre, videoTime,
+                    description, cuanValue,
+                    videoScore, status,
+                    creator, language,
+                    type, adult,
                 )
                 list.add(tvShowResponse)
             }

@@ -16,6 +16,7 @@ import id.scodeid.yorebahanmovie.R
 import id.scodeid.yorebahanmovie.databinding.ActivityDetailMovieBinding
 import id.scodeid.yorebahanmovie.databinding.ContentDetailMovieBinding
 import id.scodeid.yorebahanmovie.data.source.local.entity.MovieEntity
+import id.scodeid.yorebahanmovie.utils.gone
 import id.scodeid.yorebahanmovie.utils.invisible
 import id.scodeid.yorebahanmovie.utils.showSnackBar
 import id.scodeid.yorebahanmovie.utils.visible
@@ -54,8 +55,12 @@ class DetailMovieActivity : AppCompatActivity() {
             val movieId = extras.getString(EXTRA_DETAIL_DATA)
             if (movieId != null) {
 
+                activityDetailMovieBinding.progressBar.visible()
                 viewModel.setSelectedMovie(movieId)
-                populateCourse(viewModel.getMovieById())
+                viewModel.getMovieById().observe(this, { movies ->
+                    populateCourse(movies)
+                    activityDetailMovieBinding.progressBar.gone()
+                })
             }
         }
 

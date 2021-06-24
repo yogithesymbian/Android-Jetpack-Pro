@@ -1,10 +1,15 @@
 package id.scodeid.yorebahanmovie.ui.home.movie.detail
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import id.scodeid.yorebahanmovie.data.source.YoMovieRepository
+import id.scodeid.yorebahanmovie.data.source.local.entity.MovieEntity
 import id.scodeid.yorebahanmovie.utils.DataDummy
 import org.junit.Before
 import org.junit.Test
 import org.junit.Assert.*
+import org.junit.Rule
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
@@ -18,6 +23,12 @@ class DetailMovieViewModelTest {
     private val dummyMovies = DataDummy.generateDummyMovies()[0]
     private val movieId = dummyMovies.movieId
 
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
+
+    @Mock
+    private lateinit var observer: Observer<MovieEntity>
+
     @Mock
     private lateinit var yoMovieRepository: YoMovieRepository
 
@@ -29,8 +40,14 @@ class DetailMovieViewModelTest {
 
     @Test
     fun getMovieDetailData() {
-        `when`(yoMovieRepository.getMovie(movieId)).thenReturn(dummyMovies)
-        val movieEntity = viewModel.getMovieById()
+
+        val mutableLiveData = MutableLiveData<MovieEntity>()
+        mutableLiveData.value = dummyMovies
+
+        `when`(yoMovieRepository.getMovie(movieId))
+            .thenReturn(mutableLiveData)
+
+        val movieEntity = viewModel.getMovieById().value as MovieEntity
         verify(yoMovieRepository).getMovie(movieId)
         assertNotNull(movieEntity)
         assertEquals(dummyMovies.movieId, movieEntity.movieId)
@@ -49,6 +66,9 @@ class DetailMovieViewModelTest {
         assertEquals(dummyMovies.language, movieEntity.language)
         assertEquals(dummyMovies.income, movieEntity.income)
         assertEquals(dummyMovies.adult, movieEntity.adult)
+
+        viewModel.getMovieById().observeForever(observer)
+        verify(observer).onChanged(dummyMovies)
     }
 
 }

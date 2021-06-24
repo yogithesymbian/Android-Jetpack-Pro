@@ -1,5 +1,3 @@
-@file:Suppress("RedundantWith", "RedundantWith")
-
 package id.scodeid.yorebahanmovie.ui.home.movie
 
 import android.annotation.SuppressLint
@@ -26,7 +24,7 @@ class MovieAdapter(private val callback: MovieFragmentCallback) :
         if (listMovieEntities == null) return
         this.arrListMovieEntities.clear()
         this.arrListMovieEntities.addAll(listMovieEntities)
-        if (isEmpty == context.getString(R.string.testEmpty)) {// for testing
+        if (isEmpty == context.getString(R.string.testEmpty)) { // for testing
             Log.d(TAG_LOG, "is in testing")
             this.arrListMovieEntities.clear()
         } else

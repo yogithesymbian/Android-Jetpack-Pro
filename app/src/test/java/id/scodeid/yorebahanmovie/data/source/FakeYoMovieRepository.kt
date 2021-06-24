@@ -1,6 +1,5 @@
 package id.scodeid.yorebahanmovie.data.source
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import id.scodeid.yorebahanmovie.data.source.local.entity.MovieEntity
@@ -10,15 +9,15 @@ import id.scodeid.yorebahanmovie.data.source.remote.response.MovieResponse
 import id.scodeid.yorebahanmovie.data.source.remote.response.TvShowResponse
 
 
-class YoMovieRepository private constructor(private val remoteDataSource: RemoteDataSource) :
+class FakeYoMovieRepository (private val remoteDataSource: RemoteDataSource) :
     YoMovieDataSource {
     companion object {
         @Volatile
-        private var instance: YoMovieRepository? = null
+        private var instance: FakeYoMovieRepository? = null
 
-        fun getInstance(remoteDataSource: RemoteDataSource): YoMovieRepository =
+        fun getInstance(remoteDataSource: RemoteDataSource): FakeYoMovieRepository =
             instance ?: synchronized(this) {
-                instance ?: YoMovieRepository(remoteDataSource).apply {
+                instance ?: FakeYoMovieRepository(remoteDataSource).apply {
                     instance = this
                 }
             }

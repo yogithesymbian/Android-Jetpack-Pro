@@ -16,7 +16,6 @@ import id.scodeid.yorebahanmovie.databinding.FragmentMovieBinding
 import id.scodeid.yorebahanmovie.data.source.local.entity.MovieEntity
 import id.scodeid.yorebahanmovie.utils.*
 import id.scodeid.yorebahanmovie.viewmodel.ViewModelFactory
-import java.lang.Exception
 
 class MovieFragment : Fragment(), MovieFragmentCallback {
 
@@ -51,7 +50,15 @@ class MovieFragment : Fragment(), MovieFragmentCallback {
 
             // set adapter and load a manipulation data
             val movieAdapter = MovieAdapter(this)
-            movieAdapter.setMovies(viewModel.getMovies(), this)
+            fragmentMovieBinding.progressBar.visible()
+
+            viewModel.getMovies().observe(viewLifecycleOwner, { movie ->
+                fragmentMovieBinding.progressBar.gone()
+                movieAdapter.setMovies(movie, this)
+                movieAdapter.notifyDataSetChanged()
+                if (movieAdapter.itemCount == 0) hideRv()
+                else showRv()
+            })
 
             // config recyclerView for the data
             with(fragmentMovieBinding.rvMovie) {
@@ -59,6 +66,21 @@ class MovieFragment : Fragment(), MovieFragmentCallback {
                 setHasFixedSize(true)
                 adapter = movieAdapter
             }
+
+        }
+    }
+
+    private fun showRv() {
+        fragmentMovieBinding.let {
+            it.rvMovie.visible()
+            it.emptyContent.root.gone()
+        }
+    }
+
+    private fun hideRv() {
+        fragmentMovieBinding.let {
+            it.rvMovie.gone()
+            it.emptyContent.root.visible()
         }
     }
 
@@ -84,26 +106,10 @@ class MovieFragment : Fragment(), MovieFragmentCallback {
     }
 
     override fun onCheckDataSize(size: Int?) {
-
         fragmentMovieBinding.let {
-            try {
-                if (dataFailOnLoad == getString(R.string.testDataFailOnLoad)) {
-                    it.rvMovie.gone()
-                    it.failedLoadContent.root.visible()
-                } else {
-                    it.rvMovie.visible()
-                    it.failedLoadContent.root.gone()
-
-                    if (size == 0) {
-                        it.rvMovie.gone()
-                        it.emptyContent.root.visible()
-                    } else {
-                        it.rvMovie.visible()
-                        it.emptyContent.root.gone()
-                    }
-                }
-            } catch (e: Exception) {
-                Log.d(TAG_LOG, "an exception $e")
+            if (dataFailOnLoad == getString(R.string.testDataFailOnLoad)) {
+                it.rvMovie.gone()
+                it.failedLoadContent.root.visible()
             }
         }
     }

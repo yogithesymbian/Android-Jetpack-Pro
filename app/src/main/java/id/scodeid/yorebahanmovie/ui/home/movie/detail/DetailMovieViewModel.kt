@@ -1,5 +1,6 @@
 package id.scodeid.yorebahanmovie.ui.home.movie.detail
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import id.scodeid.yorebahanmovie.data.source.YoMovieRepository
 import id.scodeid.yorebahanmovie.data.source.local.entity.MovieEntity
@@ -12,5 +13,5 @@ class DetailMovieViewModel(private val yoMovieRepository: YoMovieRepository) : V
         this.movieId = movieId
     }
 
-    fun getMovieById(): MovieEntity = yoMovieRepository.getMovie(movieId)
+    fun getMovieById(): LiveData<MovieEntity> = yoMovieRepository.getMovie(movieId)
 }

@@ -53,15 +53,37 @@ class TvShowFragment : Fragment(), TvShowFragmentCallback {
             )[TvShowViewModel::class.java]
 
             // set adapter and load a manipulation data
-            val adapter = TvShowAdapter(this)
-            adapter.setTvShow(viewModel.getTvShow(), this)
+            val tvShowAdapter = TvShowAdapter(this)
+            fragmentTvShowBinding.progressBar.visible()
+
+            viewModel.getTvShow().observe(viewLifecycleOwner, { tvshow ->
+                fragmentTvShowBinding.progressBar.gone()
+                tvShowAdapter.setTvShow(tvshow, this)
+                tvShowAdapter.notifyDataSetChanged()
+                if (tvShowAdapter.itemCount == 0) hideRv()
+                else showRv()
+            })
 
             // config recyclerView for the data
             with(fragmentTvShowBinding.rvTvShow) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
-                this.adapter = adapter
+                this.adapter = tvShowAdapter
             }
+        }
+    }
+
+    private fun showRv() {
+        fragmentTvShowBinding.let {
+            it.rvTvShow.visible()
+            it.emptyContent.root.gone()
+        }
+    }
+
+    private fun hideRv() {
+        fragmentTvShowBinding.let {
+            it.rvTvShow.gone()
+            it.emptyContent.root.visible()
         }
     }
 
@@ -86,24 +108,9 @@ class TvShowFragment : Fragment(), TvShowFragmentCallback {
 
     override fun onCheckDataSize(size: Int?) {
         fragmentTvShowBinding.let {
-            try {
-                if (dataFailOnLoad == getString(R.string.testDataFailOnLoad)) {
-                    it.rvTvShow.gone()
-                    it.failedLoadContent.root.visible()
-                } else {
-                    it.rvTvShow.visible()
-                    it.failedLoadContent.root.gone()
-
-                    if (size == 0) {
-                        it.rvTvShow.gone()
-                        it.emptyContent.root.visible()
-                    } else {
-                        it.rvTvShow.visible()
-                        it.emptyContent.root.gone()
-                    }
-                }
-            } catch (e: Exception) {
-                Log.d(TAG_LOG, "an exception $e")
+            if (dataFailOnLoad == getString(R.string.testDataFailOnLoad)) {
+                it.rvTvShow.gone()
+                it.failedLoadContent.root.visible()
             }
         }
     }
