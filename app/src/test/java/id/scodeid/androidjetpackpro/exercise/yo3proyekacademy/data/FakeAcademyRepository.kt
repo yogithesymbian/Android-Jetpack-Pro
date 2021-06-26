@@ -2,10 +2,9 @@ package id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.AcademyDataSource
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.ContentEntity
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.CourseEntity
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.ModuleEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.ContentEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.CourseEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.ModuleEntity
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.remote.RemoteDataSource
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.remote.response.ContentResponse
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.remote.response.CourseResponse

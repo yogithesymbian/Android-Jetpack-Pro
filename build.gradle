@@ -21,6 +21,9 @@ buildscript {
         mockitoKotlinVersion = '2.2.0'
         idleResourceVersion = '3.2.0'
 
+        roomVersion = '2.2.3'
+        roomRuntimeVersion = '2.2.5'
+
     }
     repositories {
         google()

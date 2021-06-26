@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.scodeid.androidjetpackpro.R
 import id.scodeid.androidjetpackpro.databinding.FragmentBookmarkBinding
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.CourseEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.CourseEntity
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.viewmodel.ViewModelFactory
 
 class BookmarkFragment : Fragment(), BookmarkFragmentCallback {

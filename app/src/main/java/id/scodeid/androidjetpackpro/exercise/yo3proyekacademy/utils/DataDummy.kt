@@ -1,7 +1,7 @@
 package id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils
 
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.CourseEntity
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.ModuleEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.CourseEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.ModuleEntity
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.remote.response.ContentResponse
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.remote.response.CourseResponse
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.remote.response.ModuleResponse

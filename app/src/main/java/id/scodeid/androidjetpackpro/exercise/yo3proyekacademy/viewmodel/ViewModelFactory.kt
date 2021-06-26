@@ -3,7 +3,7 @@ package id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.viewmodel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.AcademyRepository
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.AcademyRepository
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.di.Injection
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.academy.AcademyViewModel
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.bookmark.BookmarkViewModel

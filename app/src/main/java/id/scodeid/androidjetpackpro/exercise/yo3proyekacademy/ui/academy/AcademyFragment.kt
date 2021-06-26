@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.scodeid.androidjetpackpro.R
 import id.scodeid.androidjetpackpro.databinding.FragmentAcademyBinding
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.DataDummy
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.viewmodel.ViewModelFactory
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.vo.Status
 
 class AcademyFragment : Fragment() {
 
@@ -38,13 +40,23 @@ class AcademyFragment : Fragment() {
             // adapter set
             val academyAdapter = AcademyAdapter()
 
-            fragmentAcademyBinding.progressBar.visibility = View.VISIBLE
-            viewModel.getCourse().observe(viewLifecycleOwner, { course ->
-                fragmentAcademyBinding.progressBar.visibility = View.GONE
-                academyAdapter.setCourses(course)
-                academyAdapter.notifyDataSetChanged()
+            viewModel.getCourses().observe(viewLifecycleOwner, { courses ->
+                if (courses != null) {
+                    when (courses.status) {
+                        Status.LOADING -> fragmentAcademyBinding.progressBar.visibility =
+                            View.VISIBLE
+                        Status.SUCCESS -> {
+                            fragmentAcademyBinding.progressBar.visibility = View.GONE
+                            academyAdapter.setCourses(courses.data)
+                            academyAdapter.notifyDataSetChanged()
+                        }
+                        Status.ERROR -> {
+                            fragmentAcademyBinding.progressBar.visibility = View.GONE
+                            Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
             })
-
 
             // recyclerView
             with(fragmentAcademyBinding.rvAcademy) {
@@ -52,6 +64,7 @@ class AcademyFragment : Fragment() {
                 setHasFixedSize(true)
                 adapter = academyAdapter
             }
+
         }
     }
 

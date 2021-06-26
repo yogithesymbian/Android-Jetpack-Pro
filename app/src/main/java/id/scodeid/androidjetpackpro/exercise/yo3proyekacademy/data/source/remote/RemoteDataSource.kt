@@ -2,6 +2,8 @@ package id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.remot
 
 import android.os.Handler
 import android.os.Looper
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.remote.response.ContentResponse
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.remote.response.CourseResponse
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.remote.response.ModuleResponse
@@ -29,66 +31,59 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
             }
     }
 
-//    fun getAllCourses(): List<CourseResponse> = jsonHelper.loadCourses()
-
-    fun getAllCourses(callback: LoadCoursesCallback) {
+    fun getAllCourses(): LiveData<ApiResponse<List<CourseResponse>>> {
 
         if (TESTING_FLAG == TESTING_FLAG_MATCH)
             EspressoIdlingResource.increment()
 
+        val resultCourse = MutableLiveData<ApiResponse<List<CourseResponse>>>()
+
         handler.postDelayed({
-            callback.onAllCoursesReceived(jsonHelper.loadCourses())
+            resultCourse.value = ApiResponse.success(jsonHelper.loadCourses())
 
             if (TESTING_FLAG == TESTING_FLAG_MATCH)
                 if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow)
                     EspressoIdlingResource.decrement()
 
         }, SERVICE_LATENCY_IN_MILLIS)
+        return resultCourse
     }
 
-    interface LoadCoursesCallback {
-        fun onAllCoursesReceived(courseResponse: List<CourseResponse>)
-    }
-
-//    fun getModules(courseId: String): List<ModuleResponse> = jsonHelper.loadModule(courseId)
-
-    fun getModules(courseId: String, callback: LoadModulesCallback) {
+    fun getModules(courseId: String): LiveData<ApiResponse<List<ModuleResponse>>> {
 
         if (TESTING_FLAG == TESTING_FLAG_MATCH)
             EspressoIdlingResource.increment()
 
+        val resultModules = MutableLiveData<ApiResponse<List<ModuleResponse>>>()
+
         handler.postDelayed({
-            callback.onAllModulesReceived(jsonHelper.loadModule(courseId))
+            resultModules.value = ApiResponse.success(jsonHelper.loadModule(courseId))
 
             if (TESTING_FLAG == TESTING_FLAG_MATCH)
                 if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow)
                     EspressoIdlingResource.decrement()
 
         }, SERVICE_LATENCY_IN_MILLIS)
+
+        return resultModules
     }
 
-    interface LoadModulesCallback {
-        fun onAllModulesReceived(moduleResponse: List<ModuleResponse>)
-    }
-
-//    fun getContent(moduleId: String): ContentResponse = jsonHelper.loadContent(moduleId)
-
-    fun getContent(moduleId: String, callback: LoadContentCallback) {
+    fun getContent(moduleId: String): LiveData<ApiResponse<ContentResponse>> {
 
         if (TESTING_FLAG == TESTING_FLAG_MATCH)
             EspressoIdlingResource.increment()
 
+        val resultContent = MutableLiveData<ApiResponse<ContentResponse>>()
+
         handler.postDelayed({
-            callback.onContentReceived(jsonHelper.loadContent(moduleId))
+            resultContent.value = ApiResponse.success(jsonHelper.loadContent(moduleId))
 
             if (TESTING_FLAG == TESTING_FLAG_MATCH)
                 if (!EspressoIdlingResource.getEspressoIdlingResourceForMainActivity().isIdleNow)
                     EspressoIdlingResource.decrement()
 
         }, SERVICE_LATENCY_IN_MILLIS)
-    }
 
-    interface LoadContentCallback {
-        fun onContentReceived(contentResponse: ContentResponse)
+        return resultContent
     }
 }

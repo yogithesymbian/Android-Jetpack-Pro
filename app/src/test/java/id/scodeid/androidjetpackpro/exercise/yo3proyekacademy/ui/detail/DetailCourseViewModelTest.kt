@@ -3,9 +3,9 @@ package id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.detail
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.AcademyRepository
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.CourseEntity
-import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.ModuleEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.AcademyRepository
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.CourseEntity
+import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.entity.ModuleEntity
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.utils.DataDummy
 import org.junit.Before
 import org.junit.Test
