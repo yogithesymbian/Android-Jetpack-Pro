@@ -1,5 +1,6 @@
 package id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.remote.ApiResponse
@@ -20,8 +21,10 @@ abstract class NetworkBoundResource<ResultType, RequestType>(private val appExec
         result.addSource(dbSource) { data ->
             result.removeSource(dbSource)
             if (shouldFetch(data)) {
+                Log.d("tracing", "fetchFromNetwork $data")
                 fetchFromNetwork(dbSource)
             } else {
+                Log.d("tracing", "fetchFromNetwork else")
                 result.addSource(dbSource) { newData ->
                     result.value = Resource.success(newData)
                 }
