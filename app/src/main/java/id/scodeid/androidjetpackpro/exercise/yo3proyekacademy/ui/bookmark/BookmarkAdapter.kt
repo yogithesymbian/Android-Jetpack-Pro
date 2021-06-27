@@ -3,6 +3,8 @@ package id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.bookmark
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -12,15 +14,7 @@ import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.data.source.local.
 import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.ui.detail.DetailCourseActivity
 
 class BookmarkAdapter(private val callback: BookmarkFragmentCallback) :
-    RecyclerView.Adapter<BookmarkAdapter.CourseViewHolder>() {
-
-    private val listCourses = ArrayList<CourseEntity>()
-
-    fun setCourses(courses: List<CourseEntity>?) {
-        if (courses == null) return
-        this.listCourses.clear()
-        this.listCourses.addAll(courses)
-    }
+    PagedListAdapter<CourseEntity, BookmarkAdapter.CourseViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -31,12 +25,12 @@ class BookmarkAdapter(private val callback: BookmarkFragmentCallback) :
         return CourseViewHolder(itemsBookmarkBinding)
     }
 
-    override fun onBindViewHolder(holder: BookmarkAdapter.CourseViewHolder, position: Int) {
-        val course = listCourses[position]
-        holder.bind(course)
+    override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
+        val course = getItem(position)
+        if (course != null) {
+            holder.bind(course)
+        }
     }
-
-    override fun getItemCount(): Int = listCourses.size
 
     inner class CourseViewHolder(private val binding: ItemsBookmarkBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -58,6 +52,19 @@ class BookmarkAdapter(private val callback: BookmarkFragmentCallback) :
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
                     .error(R.drawable.ic_error)
                     .into(imgPoster)
+            }
+        }
+    }
+
+    fun getSwipedData(swipedPosition: Int): CourseEntity? = getItem(swipedPosition)
+
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<CourseEntity>() {
+            override fun areItemsTheSame(oldItem: CourseEntity, newItem: CourseEntity): Boolean {
+                return oldItem.courseId == newItem.courseId
+            }
+            override fun areContentsTheSame(oldItem: CourseEntity, newItem: CourseEntity): Boolean {
+                return oldItem == newItem
             }
         }
     }
