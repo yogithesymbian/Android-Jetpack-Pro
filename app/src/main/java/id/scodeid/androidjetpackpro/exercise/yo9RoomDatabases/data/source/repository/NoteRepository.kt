@@ -6,6 +6,7 @@ import androidx.paging.DataSource
 import id.scodeid.androidjetpackpro.exercise.yo9RoomDatabases.data.source.database.Note
 import id.scodeid.androidjetpackpro.exercise.yo9RoomDatabases.data.source.database.NoteDao
 import id.scodeid.androidjetpackpro.exercise.yo9RoomDatabases.data.source.database.NoteRoomDatabase
+import id.scodeid.androidjetpackpro.exercise.yo9RoomDatabases.utils.SortUtils
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -18,7 +19,10 @@ class NoteRepository(application: Application) {
         notesDao = db.noteDao()
     }
 
-    fun getAllNotes(): DataSource.Factory<Int, Note> = notesDao.getAllNotes()
+    fun getAllNotes(sort: String): DataSource.Factory<Int, Note> {
+        val query = SortUtils.getSortedQuery(sort)
+        return notesDao.getAllNotes(query)
+    }
 
     fun insert(note: Note) {
         executorService.execute { notesDao.insert(note) }

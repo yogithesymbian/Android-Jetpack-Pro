@@ -9,5 +9,7 @@ import id.scodeid.androidjetpackpro.exercise.yo9RoomDatabases.data.source.reposi
 
 class MainNoteViewModel(application: Application) : ViewModel() {
     private val noteRepository: NoteRepository = NoteRepository(application)
-    fun getAllNotes(): LiveData<PagedList<Note>> = LivePagedListBuilder(noteRepository.getAllNotes(), 12).build()
+    fun getAllNotes(sort: String): LiveData<PagedList<Note>> {
+        return LivePagedListBuilder(noteRepository.getAllNotes(sort), 20).build()
+    }
 }
