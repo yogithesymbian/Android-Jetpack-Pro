@@ -41,6 +41,10 @@ class DetailCourseActivity : AppCompatActivity() {
         setSupportActionBar(activityDetailCourseBinding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        activityDetailCourseBinding.toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
+
         val adapter = DetailCourseAdapter()
 
         val viewModelFactory = ViewModelFactory.getInstance(this)
