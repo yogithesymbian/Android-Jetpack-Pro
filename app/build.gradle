@@ -8,6 +8,7 @@ plugins {
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
+    kapt.includeCompileClasspath = false
 
     defaultConfig {
         applicationId "id.scodeid.androidjetpackpro"
@@ -30,6 +31,7 @@ android {
         viewBinding true
     }
     compileOptions {
+        // /Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -40,7 +42,6 @@ android {
 
 dependencies {
     //kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.5.0-M1"
     implementation "androidx.core:core-ktx:$coreVersion"
 
     //ui
@@ -77,8 +78,10 @@ dependencies {
     // retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
 
-    implementation "androidx.room:room-runtime:$roomRuntimeVersion"
+    implementation "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
+
+    // implementation "androidx.paging:paging-runtime-ktx:3.0.0"
 }
