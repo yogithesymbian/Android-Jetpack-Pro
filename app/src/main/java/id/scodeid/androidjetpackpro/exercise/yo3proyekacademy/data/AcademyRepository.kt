@@ -67,6 +67,7 @@ class AcademyRepository private constructor(
                         response.imagePath)
                     courseList.add(course)
                 }
+                Log.d("tracing", "saveCallResult on")
 
                 localDataSource.insertCourses(courseList)
             }

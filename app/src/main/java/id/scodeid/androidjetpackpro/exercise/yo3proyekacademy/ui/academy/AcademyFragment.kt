@@ -18,14 +18,15 @@ import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.vo.Status
 class AcademyFragment : Fragment() {
 
     // init for binding
-    private lateinit var fragmentAcademyBinding: FragmentAcademyBinding
+    private var _fragmentAcademyBinding: FragmentAcademyBinding? = null
+    private val fragmentAcademyBinding get() = _fragmentAcademyBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        fragmentAcademyBinding = FragmentAcademyBinding.inflate(layoutInflater, container, false)
-        return fragmentAcademyBinding.root
+    ): View? {
+        _fragmentAcademyBinding = FragmentAcademyBinding.inflate(layoutInflater, container, false)
+        return fragmentAcademyBinding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,14 +44,14 @@ class AcademyFragment : Fragment() {
             viewModel.getCourses().observe(viewLifecycleOwner, { courses ->
                 if (courses != null) {
                     when (courses.status) {
-                        Status.LOADING -> fragmentAcademyBinding.progressBar.visibility =
+                        Status.LOADING -> fragmentAcademyBinding?.progressBar?.visibility =
                             View.VISIBLE
                         Status.SUCCESS -> {
                             fragmentAcademyBinding?.progressBar?.visibility = View.GONE
                             academyAdapter.submitList(courses.data)
                         }
                         Status.ERROR -> {
-                            fragmentAcademyBinding.progressBar.visibility = View.GONE
+                            fragmentAcademyBinding?.progressBar?.visibility = View.GONE
                             Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -58,13 +59,18 @@ class AcademyFragment : Fragment() {
             })
 
             // recyclerView
-            with(fragmentAcademyBinding.rvAcademy) {
-                layoutManager = LinearLayoutManager(context)
-                setHasFixedSize(true)
-                adapter = academyAdapter
+            with(fragmentAcademyBinding?.rvAcademy) {
+                this?.layoutManager = LinearLayoutManager(context)
+                this?.setHasFixedSize(true)
+                this?.adapter = academyAdapter
             }
 
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _fragmentAcademyBinding = null
     }
 
 }

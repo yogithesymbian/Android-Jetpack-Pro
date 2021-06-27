@@ -32,7 +32,7 @@ class AcademyAdapter :
         }
     }
 
-    inner class CourseViewHolder(private val binding: ItemsAcademyBinding) :
+     class CourseViewHolder(private val binding: ItemsAcademyBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(courseEntity: CourseEntity) {
             with(binding) {
