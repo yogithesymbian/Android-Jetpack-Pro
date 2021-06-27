@@ -21,10 +21,8 @@ abstract class NetworkBoundResource<ResultType, RequestType>(private val appExec
         result.addSource(dbSource) { data ->
             result.removeSource(dbSource)
             if (shouldFetch(data)) {
-                Log.d("tracing", "fetchFromNetwork $data")
                 fetchFromNetwork(dbSource)
             } else {
-                Log.d("tracing", "fetchFromNetwork else")
                 result.addSource(dbSource) { newData ->
                     result.value = Resource.success(newData)
                 }

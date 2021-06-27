@@ -20,12 +20,9 @@ import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.vo.Status
 
 class ModuleListFragment : Fragment(), MyAdapterClickListener {
 
-    companion object {
-        val TAG: String = ModuleListFragment::class.java.simpleName
-        fun newInstance(): ModuleListFragment = ModuleListFragment()
-    }
+    private var _fragmentModuleListBinding: FragmentModuleListBinding? = null
+    private val fragmentModuleListBinding get() = _fragmentModuleListBinding
 
-    private lateinit var fragmentModuleListBinding: FragmentModuleListBinding
     private lateinit var adapter: ModuleListAdapter
     private lateinit var courseReaderCallback: CourseReaderCallback
     private lateinit var viewModel: CourseReaderViewModel
@@ -35,9 +32,9 @@ class ModuleListFragment : Fragment(), MyAdapterClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        fragmentModuleListBinding =
+        _fragmentModuleListBinding =
             FragmentModuleListBinding.inflate(layoutInflater, container, false)
-        return fragmentModuleListBinding.root
+        return fragmentModuleListBinding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,18 +47,18 @@ class ModuleListFragment : Fragment(), MyAdapterClickListener {
         )[CourseReaderViewModel::class.java]
         adapter = ModuleListAdapter(this)
 
-        fragmentModuleListBinding.progressBar.visibility = View.VISIBLE
+        fragmentModuleListBinding?.progressBar?.visibility = View.VISIBLE
         viewModel.modules.observe(viewLifecycleOwner, { moduleEntities ->
             if (moduleEntities != null) {
                 when (moduleEntities.status) {
-                    Status.LOADING -> fragmentModuleListBinding.progressBar.visibility =
+                    Status.LOADING -> fragmentModuleListBinding?.progressBar?.visibility =
                         View.VISIBLE
                     Status.SUCCESS -> {
-                        fragmentModuleListBinding.progressBar.visibility = View.GONE
+                        fragmentModuleListBinding?.progressBar?.visibility = View.GONE
                         populateRecyclerView(moduleEntities.data as List<ModuleEntity>)
                     }
                     Status.ERROR -> {
-                        fragmentModuleListBinding.progressBar.visibility = View.GONE
+                        fragmentModuleListBinding?.progressBar?.visibility = View.GONE
                         Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -81,15 +78,26 @@ class ModuleListFragment : Fragment(), MyAdapterClickListener {
 
     private fun populateRecyclerView(listModuleEntity: List<ModuleEntity>) {
         with(fragmentModuleListBinding) {
-            progressBar.visibility = View.GONE
+            this?.progressBar?.visibility = View.GONE
             adapter.setModules(listModuleEntity)
-            rvModule.layoutManager = LinearLayoutManager(context)
-            rvModule.setHasFixedSize(true)
-            rvModule.adapter = adapter
+            this?.rvModule?.layoutManager = LinearLayoutManager(context)
+            this?.rvModule?.setHasFixedSize(true)
+            this?.rvModule?.adapter = adapter
             val dividerItemDecoration =
                 DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
-            rvModule.addItemDecoration(dividerItemDecoration)
+            this?.rvModule?.addItemDecoration(dividerItemDecoration)
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _fragmentModuleListBinding = null
+    }
+
+    companion object {
+        val TAG: String = ModuleListFragment::class.java.simpleName
+        fun newInstance(): ModuleListFragment = ModuleListFragment()
+    }
+
 
 }

@@ -18,7 +18,8 @@ import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.viewmodel.ViewMode
 
 class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
 
-    private lateinit var fragmentBookmarkBinding: FragmentBookmarkBinding
+    private var _fragmentBookmarkBinding: FragmentBookmarkBinding? = null
+    private val fragmentBookmarkBinding get() = _fragmentBookmarkBinding
 
     private lateinit var viewModel: BookmarkViewModel
     private lateinit var adapter: BookmarkAdapter
@@ -26,14 +27,14 @@ class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        fragmentBookmarkBinding = FragmentBookmarkBinding.inflate(inflater, container, false)
-        return fragmentBookmarkBinding.root
+    ): View? {
+        _fragmentBookmarkBinding = FragmentBookmarkBinding.inflate(inflater, container, false)
+        return fragmentBookmarkBinding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        itemTouchHelper.attachToRecyclerView(fragmentBookmarkBinding.rvBookmark)
+        itemTouchHelper.attachToRecyclerView(fragmentBookmarkBinding?.rvBookmark)
 
 
         if (activity != null) {
@@ -44,16 +45,16 @@ class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
 
             val adapter = BookmarkAdapter(this)
 
-            fragmentBookmarkBinding.progressBar.visibility = View.VISIBLE
+            fragmentBookmarkBinding?.progressBar?.visibility = View.VISIBLE
             viewModel.getBookmarks().observe(viewLifecycleOwner, { courses ->
-                fragmentBookmarkBinding.progressBar.visibility = View.GONE
+                fragmentBookmarkBinding?.progressBar?.visibility = View.GONE
                 adapter.submitList(courses)
             })
 
-            with(fragmentBookmarkBinding.rvBookmark) {
-                layoutManager = LinearLayoutManager(context)
-                setHasFixedSize(true)
-                this.adapter = adapter
+            with(fragmentBookmarkBinding?.rvBookmark) {
+                this?.layoutManager = LinearLayoutManager(context)
+                this?.setHasFixedSize(true)
+                this?.adapter = adapter
             }
         }
     }
@@ -97,5 +98,10 @@ class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
             }
         }
     })
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _fragmentBookmarkBinding = null
+    }
 
 }

@@ -66,8 +66,6 @@ class AcademyFragment : Fragment() {
                 this?.adapter = academyAdapter
             }
 
-        } else {
-            Log.d("tracing", "saveCallResult on")
         }
     }
 

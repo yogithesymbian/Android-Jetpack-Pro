@@ -15,17 +15,19 @@ import id.scodeid.androidjetpackpro.exercise.yo3proyekacademy.vo.Status
 
 class ModuleContentFragment : Fragment() {
 
-    private lateinit var fragmentModuleContentBinding: FragmentModuleContentBinding
+    private var _fragmentModuleContentBinding: FragmentModuleContentBinding? = null
+    private var fragmentModuleContentBinding = _fragmentModuleContentBinding
+
     private lateinit var viewModel: CourseReaderViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         // Inflate the layout for this fragment
-        fragmentModuleContentBinding =
+        _fragmentModuleContentBinding =
             FragmentModuleContentBinding.inflate(inflater, container, false)
-        return fragmentModuleContentBinding.root
+        return fragmentModuleContentBinding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,14 +39,14 @@ class ModuleContentFragment : Fragment() {
                 viewModelFactory
             )[CourseReaderViewModel::class.java]
 
-            fragmentModuleContentBinding.progressBar.visibility = View.VISIBLE
+            fragmentModuleContentBinding?.progressBar?.visibility = View.VISIBLE
             viewModel.selectedModule.observe(viewLifecycleOwner, { moduleEntity ->
                 if (moduleEntity != null) {
                     when (moduleEntity.status) {
-                        Status.LOADING -> fragmentModuleContentBinding.progressBar.visibility =
+                        Status.LOADING -> fragmentModuleContentBinding?.progressBar?.visibility =
                             View.VISIBLE
                         Status.SUCCESS -> if (moduleEntity.data != null) {
-                            fragmentModuleContentBinding.progressBar.visibility = View.GONE
+                            fragmentModuleContentBinding?.progressBar?.visibility = View.GONE
                             if (moduleEntity.data.contentEntity != null) {
                                 populateWebView(moduleEntity.data)
                             }
@@ -54,19 +56,19 @@ class ModuleContentFragment : Fragment() {
                             }
                         }
                         Status.ERROR -> {
-                            fragmentModuleContentBinding.progressBar.visibility = View.GONE
+                            fragmentModuleContentBinding?.progressBar?.visibility = View.GONE
                             Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
                         }
                     }
-                    fragmentModuleContentBinding.btnNext.setOnClickListener { viewModel.setNextPage() }
-                    fragmentModuleContentBinding.btnPrev.setOnClickListener { viewModel.setPrevPage() }
+                    fragmentModuleContentBinding?.btnNext?.setOnClickListener { viewModel.setNextPage() }
+                    fragmentModuleContentBinding?.btnPrev?.setOnClickListener { viewModel.setPrevPage() }
                 }
             })
         }
     }
 
     private fun populateWebView(moduleEntity: ModuleEntity) {
-        fragmentModuleContentBinding.webView.loadData(
+        fragmentModuleContentBinding?.webView?.loadData(
             moduleEntity.contentEntity?.content ?: "",
             "text/html",
             "UTF-8"
@@ -78,24 +80,29 @@ class ModuleContentFragment : Fragment() {
             when (module.position) {
                 0 -> {
                     fragmentModuleContentBinding.also {
-                        it.btnPrev.isEnabled = false
-                        it.btnNext.isEnabled = true
+                        it?.btnPrev?.isEnabled = false
+                        it?.btnNext?.isEnabled = true
                     }
                 }
                 viewModel.getModuleSize() - 1 -> {
                     fragmentModuleContentBinding.also {
-                        it.btnPrev.isEnabled = true
-                        it.btnNext.isEnabled = false
+                        it?.btnPrev?.isEnabled = true
+                        it?.btnNext?.isEnabled = false
                     }
                 }
                 else -> {
                     fragmentModuleContentBinding.also {
-                        it.btnPrev.isEnabled = true
-                        it.btnNext.isEnabled = true
+                        it?.btnPrev?.isEnabled = true
+                        it?.btnNext?.isEnabled = true
                     }
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _fragmentModuleContentBinding = null
     }
 
     companion object {

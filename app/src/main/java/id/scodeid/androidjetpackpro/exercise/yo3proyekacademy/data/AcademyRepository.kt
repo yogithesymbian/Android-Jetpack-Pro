@@ -39,29 +39,19 @@ class AcademyRepository private constructor(
     }
 
     override fun getAllCourses(): LiveData<Resource<PagedList<CourseEntity>>> {
-        return object : NetworkBoundResource<PagedList<CourseEntity>, List<CourseResponse>>(appExecutors) {
+        return object :
+            NetworkBoundResource<PagedList<CourseEntity>, List<CourseResponse>>(appExecutors) {
             public override fun loadFromDB(): LiveData<PagedList<CourseEntity>> {
-                Log.d("tracing", "loadFromDB on")
                 val config = PagedList.Config.Builder()
                     .setEnablePlaceholders(false)
                     .setInitialLoadSizeHint(4)
                     .setPageSize(4)
                     .build()
-                val live = LivePagedListBuilder(localDataSource.getAllCourses(), config).build()
-                Log.d("tracing", "loadFromDB on data ${live.toString()}")
-                return live
+                return LivePagedListBuilder(localDataSource.getAllCourses(), config).build()
             }
 
-            override fun shouldFetch(data: PagedList<CourseEntity>?): Boolean{
-                val check = data == null || data.isEmpty()
-                return if (check) {
-                    Log.d("tracing", "shouldFetch isEmpty $check")
-                    check
-                } else {
-                    Log.d("tracing", "shouldFetch isNotEmpty $check")
-                    check
-                }
-            }
+            override fun shouldFetch(data: PagedList<CourseEntity>?): Boolean =
+                data == null || data.isEmpty()
 
             public override fun createCall(): LiveData<ApiResponse<List<CourseResponse>>> =
                 remoteDataSource.getAllCourses()
@@ -69,12 +59,14 @@ class AcademyRepository private constructor(
             public override fun saveCallResult(data: List<CourseResponse>) {
                 val courseList = ArrayList<CourseEntity>()
                 for (response in data) {
-                    val course = CourseEntity(response.id,
+                    val course = CourseEntity(
+                        response.id,
                         response.title,
                         response.description,
                         response.date,
                         false,
-                        response.imagePath)
+                        response.imagePath
+                    )
                     courseList.add(course)
                 }
                 Log.d("tracing", "saveCallResult on")

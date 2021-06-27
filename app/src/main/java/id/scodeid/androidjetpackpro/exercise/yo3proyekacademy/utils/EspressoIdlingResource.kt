@@ -23,5 +23,5 @@ object EspressoIdlingResource {
  * VARIABLE TESTING
  */
 const val TESTING_FLAG = "isTest"
-//const val TESTING_FLAG_MATCH = "isTest"
-const val TESTING_FLAG_MATCH = "isNotTest"
+const val TESTING_FLAG_MATCH = "isTest"
+//const val TESTING_FLAG_MATCH = "isNotTest"

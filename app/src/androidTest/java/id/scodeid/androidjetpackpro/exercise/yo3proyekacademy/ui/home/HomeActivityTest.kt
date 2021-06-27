@@ -71,14 +71,6 @@ class HomeActivityTest {
 
     @Test
     fun loadBookmarks() {
-        onView(withText("Bookmark")).perform(click())
-        onView(withId(R.id.rv_bookmark)).check(matches(isDisplayed()))
-        onView(withId(R.id.rv_bookmark)).check(matches(isDisplayed()))
-        onView(withId(R.id.rv_bookmark)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyCourse.size))
-    }
-
-    @Test
-    fun loadBookmarksTwo() {
         onView(withId(R.id.rv_academy)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         onView(withId(R.id.action_bookmark)).perform(click())
         onView(isRoot()).perform(ViewActions.pressBack())
