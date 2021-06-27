@@ -2,6 +2,7 @@ package id.scodeid.androidjetpackpro.exercise.yo9RoomDatabases.data.source.repos
 
 import android.app.Application
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import id.scodeid.androidjetpackpro.exercise.yo9RoomDatabases.data.source.database.Note
 import id.scodeid.androidjetpackpro.exercise.yo9RoomDatabases.data.source.database.NoteDao
 import id.scodeid.androidjetpackpro.exercise.yo9RoomDatabases.data.source.database.NoteRoomDatabase
@@ -17,7 +18,8 @@ class NoteRepository(application: Application) {
         notesDao = db.noteDao()
     }
 
-    fun getAllNotes(): LiveData<List<Note>> = notesDao.getAllNotes()
+    fun getAllNotes(): DataSource.Factory<Int, Note> = notesDao.getAllNotes()
+
     fun insert(note: Note) {
         executorService.execute { notesDao.insert(note) }
     }

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import id.scodeid.androidjetpackpro.R
@@ -18,7 +19,8 @@ class MainNoteActivity : AppCompatActivity() {
 
     private var _activityMainNoteBinding: ActivityMainNoteBinding? = null
     private val binding get() = _activityMainNoteBinding
-    private lateinit var adapter: NoteAdapter
+
+    private lateinit var adapter: NotePagedListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +31,7 @@ class MainNoteActivity : AppCompatActivity() {
         val mainNoteViewModel = obtainViewModel(this@MainNoteActivity)
         mainNoteViewModel.getAllNotes().observe(this, noteObserver)
 
-        adapter = NoteAdapter(this@MainNoteActivity)
+        adapter = NotePagedListAdapter(this@MainNoteActivity)
         binding?.rvNotes?.layoutManager = LinearLayoutManager(this)
         binding?.rvNotes?.setHasFixedSize(true)
         binding?.rvNotes?.adapter = adapter
@@ -48,9 +50,9 @@ class MainNoteActivity : AppCompatActivity() {
         return ViewModelProvider(activity, factory)[MainNoteViewModel::class.java]
     }
 
-    private val noteObserver = Observer<List<Note>> { noteList ->
+    private val noteObserver = Observer<PagedList<Note>> { noteList ->
         if (noteList != null) {
-            adapter.setListNotes(noteList)
+            adapter.submitList(noteList)
         }
     }
 
